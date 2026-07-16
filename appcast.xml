@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>CheckMyMac Pro</title>
+        <item>
+            <title>0.1.1</title>
+            <pubDate>Thu, 16 Jul 2026 18:02:45 +0800</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>0.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/JdYoda/checkmymac-site/releases/download/v0.1.1/CheckMyMacPro-0.1.1.dmg" length="7276430" type="application/octet-stream" sparkle:edSignature="0IDykCWQWzJJOQEgCAg9A3mzrzYEU850SIWHy7JF7GEBDohBdinF/fP21ukJNGRvc5Hk5uhe41kE0xziHTW+Aw=="/>
+        </item>
+    </channel>
+</rss>
