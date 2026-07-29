@@ -3,6 +3,14 @@
     <channel>
         <title>CheckMyMac Pro</title>
         <item>
+            <title>1.5.0</title>
+            <pubDate>Wed, 29 Jul 2026 20:06:27 +0800</pubDate>
+            <sparkle:version>10500</sparkle:version>
+            <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/JdYoda/checkmymac-site/releases/download/v1.5.0/CheckMyMacPro-1.5.0.dmg" length="7810394" type="application/octet-stream" sparkle:edSignature="GXK7ZmzWS8S6AB2H45n4l+mAWN0uTa7QlpzEM9bccVABgEnhykd8Y9Z3t0B9f7QmU+izQnFPkKM66tBan9p1Cg=="/>
+        </item>
+        <item>
             <title>0.1.1</title>
             <pubDate>Thu, 16 Jul 2026 18:06:56 +0800</pubDate>
             <sparkle:version>101</sparkle:version>
