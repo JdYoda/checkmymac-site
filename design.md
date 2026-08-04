@@ -7,9 +7,13 @@
 editorial с технической (mono) интонацией — «протокол диагностики с сервисного стола».
 
 ## Macrostructure family
-- Marketing (index.html): **Stat-Led** — hero вокруг честной цифры (29 checks).
-  Компоненты: N9 edge-aligned nav · F3 tabular spec sheet · F4 step sequence · Ft4 dense colophon.
-- Content (privacy / terms / refunds): **Long Document**, typography-only, класс `.legal`.
+- Marketing (index.html + ru/index.html): **Stat-Led** — hero вокруг честной цифры (30+,
+  тик до 30 + серый статичный «+»). Компоненты: N9 edge-aligned nav (+ mono-переключатель
+  языка .lang) · F3 tabular spec sheet · masonry-витрина скриншотов .shots (columns: 2→1)
+  · F4 step sequence · download-секция .dl с рамкой Free/Full .tiers · Ft4 dense colophon.
+- Content (privacy / terms / refunds / 404): **Long Document**, typography-only, класс `.legal`.
+- Языки: EN (/) и RU (/ru/), hreflang-связки на обеих; юр. страницы только EN.
+- Скриншоты: img/web/ — WebP + PNG-fallback через `<picture>` (Safari на Catalina не умеет WebP).
 
 ## Theme — custom «тёплый уголь + янтарь»
 Оси: dark paper / grotesk+mono display / warm accent (hue 82°).
@@ -53,7 +57,11 @@ editorial с технической (mono) интонацией — «прото
 ## Запрещено (анти-паттерны, уже выпиленные)
 - Фейковый хром окон (traffic-light точки) — бланк отчёта рисуется как документ, не как окно.
 - Eyebrow-ярлыки над секциями. Заголовки держатся сами.
-- Выдуманные метрики: на сайте только реальные цифры (29 проверок, 67 моделей, $19/$39).
+- Выдуманные метрики: на сайте только реальные цифры (30+/31 проверка, 72 модели, $19/$39,
+  19 бесплатных проверок). make-appcast.sh сам обновляет версию/имя DMG (span.dl-ver).
+- Упоминания Yoda Service и ссылки на yoda-service.com ЗАПРЕЩЕНЫ (решение Юры 2026-08-04,
+  память no-yoda-branding-public). Формула: «built inside a large Apple repair service,
+  published by an independent developer». Контакт: yukkaperehenen@gmail.com.
 - Градиентные заголовки, italic в заголовках, карточные сетки 3×N с иконками.
 
 ## Что страницы обязаны разделять

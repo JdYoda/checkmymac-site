@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@500;600&display=swap");
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+  background: oklch(21% 0.012 75);
+  color: oklch(93% 0.02 85);
+  font-family: "Space Grotesk", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding: 0 72px;
+}
+.left { flex: 1.15; }
+.brand { display: flex; align-items: center; gap: 12px; font-size: 30px; font-weight: 700; }
+.brand::before {
+  content: ""; width: 16px; height: 16px; border-radius: 4px;
+  background: oklch(82% 0.155 82);
+  box-shadow: 0 0 16px oklch(82% 0.155 82 / 0.8);
+}
+.stat {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 190px; font-weight: 600; line-height: 1;
+  letter-spacing: -0.04em;
+  color: oklch(82% 0.155 82);
+  margin-top: 28px;
+}
+.stat span { color: oklch(63% 0.02 80); }
+.q { font-size: 44px; font-weight: 500; line-height: 1.2; margin-top: 10px; max-width: 13ch; }
+.note {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 17px; letter-spacing: 0.04em;
+  color: oklch(63% 0.02 80);
+  margin-top: 30px;
+}
+.right { flex: 0.85; border: 1px solid oklch(32% 0.015 78); background: oklch(18.5% 0.011 75); padding: 22px; }
+.rh {
+  display: flex; justify-content: space-between;
+  font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: oklch(63% 0.02 80);
+  border-bottom: 1px solid oklch(32% 0.015 78);
+  padding-bottom: 12px; margin-bottom: 6px;
+}
+ul { list-style: none; }
+li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 9px 0; font-size: 19px;
+  border-bottom: 1px dashed oklch(32% 0.015 78 / 0.5);
+}
+li:last-child { border-bottom: 0; }
+.led { width: 9px; height: 9px; border-radius: 50%; background: oklch(80% 0.17 150); box-shadow: 0 0 7px oklch(80% 0.17 150 / 0.6); }
+.led.w { background: oklch(82% 0.15 85); box-shadow: 0 0 7px oklch(82% 0.15 85 / 0.6); }
+.led.b { background: oklch(70% 0.17 25); box-shadow: 0 0 7px oklch(70% 0.17 25 / 0.6); }
+.v { margin-left: auto; font-family: "IBM Plex Mono", monospace; font-size: 14px; font-weight: 600; color: oklch(80% 0.17 150); }
+.v.w { color: oklch(82% 0.15 85); }
+.v.b { color: oklch(70% 0.17 25); }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="brand">CheckMyMac Pro</div>
+    <div class="stat">30<span>+</span></div>
+    <div class="q">hardware checks. One PDF verdict.</div>
+    <div class="note">NOTARIZED BY APPLE · RUNS OFFLINE · FREE VERSION INCLUDED</div>
+  </div>
+  <div class="right">
+    <div class="rh"><span>Diagnostic report</span><span>MBP 13"</span></div>
+    <ul>
+      <li><span class="led"></span>Display<b class="v">OK</b></li>
+      <li><span class="led"></span>Keyboard<b class="v">OK</b></li>
+      <li><span class="led w"></span>Battery<b class="v w">1 181 CYCLES</b></li>
+      <li><span class="led"></span>USB-C ports<b class="v">OK</b></li>
+      <li><span class="led b"></span>Speakers<b class="v b">CRACKLING</b></li>
+      <li><span class="led"></span>Touch ID<b class="v">12 TOUCHES</b></li>
+      <li><span class="led"></span>Kernel panics<b class="v">NONE</b></li>
+    </ul>
+  </div>
+</body>
+</html>
