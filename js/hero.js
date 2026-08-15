@@ -211,7 +211,8 @@ scene.add(dust);
 const root = new THREE.Group();
 scene.add(root);
 let rootBaseY = 0;
-let rootBaseX = null; // база смещения по X; на широких экранах мак уводится правее текста
+let rootBaseX = null;  // база смещения по X; на широких экранах мак уводится правее текста
+let calloutShift = 0;  // тот же сдвиг для бирок, в пикселях — иначе они лезут на заголовок
 
 // логические детали: suffix узла →描述. Заполняется после диагностики.
 const PART_DEFS = PART_DEFS_DATA;
@@ -618,6 +619,8 @@ loader.load(assets.model, (gltf) => {
   }
 
   container.classList.add('live');
+  resize();                                        // замерить бирки после вставки
+  if (document.fonts) document.fonts.ready.then(resize);  // и после загрузки шрифтов
 }, undefined, (err) => { console.error('hero: model failed to load', err); });
 
 // hover
@@ -657,10 +660,13 @@ function resize() {
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
-  // на широких окнах уводим мак правее, чтобы не налезал на заголовок слева
-  if (rootBaseX !== null) {
-    root.position.x = rootBaseX + Math.min(1.4, Math.max(0, (w / h - 1.35) * 1.8));
-  }
+  // на широких окнах уводим мак правее, чтобы он и его бирки не налезали
+  // на заголовок слева; бирки живут в долях экрана — двигаем их отдельно
+  const shift = Math.min(4.6, Math.max(0, (w / h - 1.2) * 6.2));
+  if (rootBaseX !== null) root.position.x = rootBaseX + shift;
+  calloutShift = shift * (w / 12);
+  // ширины бирок кэшируем: нужны каждый кадр, чтобы правые не ушли за экран
+  for (const p of parts.values()) if (p.calloutEl) p.cw = p.calloutEl.offsetWidth;
 }
 addEventListener('resize', resize);
 resize();
@@ -703,7 +709,8 @@ function frame(ms) {
     const n = colCount[p.side];
     let bx = p.side === 'L' ? W * 0.225 : W * 0.775;
     let ty = H * (0.2 + (n > 1 ? p.slot * 0.55 / (n - 1) : 0));
-    if (p.userPos) { bx = p.userPos.fx * W; ty = p.userPos.fy * H; }
+    if (p.userPos) { bx = p.userPos.fx * W + calloutShift; ty = p.userPos.fy * H; }
+    if (p.side === 'R') bx = Math.min(bx, W - 16 - (p.cw || 150));
     p.calloutEl.style.left = bx + 'px';
     p.calloutEl.style.top = ty + 'px';
     const vis = Math.max(0, Math.min(1, (p.cur - 0.4) / 0.45));
