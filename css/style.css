@@ -84,11 +84,14 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 .spec-note { margin-top: 18px; font: 11px var(--font-m); letter-spacing: .14em; color: var(--dim); }
 
 /* скриншоты — белые карточки-полароиды */
-/* кирпичная кладка: карточки разной высоты подтягиваются вверх, без дыр */
-.shots-grid { column-count: 3; column-gap: 26px; }
-.shots-grid figure { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 12px 12px 14px; break-inside: avoid; margin-bottom: 26px; }
-.shots-grid img { width: 100%; height: auto; display: block; }
-.shots-grid figcaption { font: 10.5px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-top: 12px; }
+/* PDF-отчёт слева целиком на два ряда, остальные кадры — карточками 16:10
+   справа и под ним; карточки одной высоты, подписи по одной линии */
+.shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.shots-grid figure { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 12px 12px 14px; display: flex; flex-direction: column; }
+.shots-grid img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; display: block; background: #fff; }
+.shots-grid figure.tall { grid-row: span 2; }
+.shots-grid figure.tall img { aspect-ratio: auto; object-fit: contain; }
+.shots-grid figcaption { font: 10.5px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-top: auto; padding-top: 12px; }
 
 /* шаги — номера-кружки */
 .steps { counter-reset: st; max-width: 720px; list-style: none; }
@@ -147,7 +150,6 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 /* ── мобильные ──────────────────────────────────────────────────────── */
 @media (max-width: 1000px) {
   .hero { height: clamp(420px, 64vh, 640px); }
-  .shots-grid { column-count: 2; }
 }
 @media (max-width: 768px) {
   section { padding: 48px 0; }
@@ -160,7 +162,6 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
   .spec td { border-bottom: 0; padding: 2px 0; }
   .spec td:first-child { width: auto; }
   .spec td:last-child { text-align: left; }
-  .shots-grid { column-count: 1; }
-  .tiers, .plans { grid-template-columns: 1fr; }
+  .shots-grid, .tiers, .plans { grid-template-columns: 1fr; }
   .tear { height: 20px; }
 }
