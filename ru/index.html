@@ -21,24 +21,25 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../css/style.css?v=20260804">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=20260815">
 </head>
 <body>
 
-<header class="wrap nav">
-  <a class="brand" href="/ru/">CheckMyMac&nbsp;Pro</a>
-  <div class="nav-right">
-    <a class="lang" href="/" lang="en" hreflang="en">EN</a>
-    <a class="nav-cta" href="#download">СКАЧАТЬ БЕСПЛАТНО</a>
-  </div>
-</header>
+<div class="device">
+  <header class="wrap nav">
+    <a class="brand" href="/ru/">CheckMyMac&nbsp;Pro</a>
+    <div class="nav-right">
+      <a class="lang" href="/" lang="en" hreflang="en">EN</a>
+      <a class="nav-cta" href="#download">СКАЧАТЬ БЕСПЛАТНО</a>
+    </div>
+  </header>
 
-<main>
-  <section class="wrap hero">
-    <div>
-      <p class="stat-figure" aria-hidden="true"><span class="tick"></span><span class="plus">+</span></p>
-      <span class="visually-hidden">30+</span>
-      <h1 class="stat-qualifier">проверок железа — и у мака не остаётся секретов.</h1>
+  <section class="hero" aria-label="Разборка MacBook">
+    <div id="hero3d"></div>
+    <img class="hero-poster" src="../assets/hero/poster.webp" srcset="../assets/hero/poster-mobile.webp 800w, ../assets/hero/poster.webp 1400w" sizes="100vw" alt="MacBook Pro разобран на детали, у каждой — вердикт диагностики" width="1200" height="792">
+    <div class="hero-copy">
+      <h1>У мака не остаётся <span>секретов</span>.</h1>
       <p class="sub">CheckMyMac Pro прощупывает макбук насквозь: батарея, порты, датчики, Touch&nbsp;ID, температуры — а в конце отдаёт PDF-отчёт. Программу написал сервисный центр по ремонту Apple для тех, кто покупает, продаёт или чинит маки. Бесплатная версия — навсегда, без регистраций и пробных сроков.</p>
       <div class="cta-row">
         <a class="btn-primary" href="https://github.com/JdYoda/checkmymac-site/releases/latest/download/CheckMyMacPro-1.5.21.dmg">Скачать бесплатно для macOS</a>
@@ -46,24 +47,13 @@
       </div>
       <p class="hero-note">НОТАРИЗОВАНО APPLE · РАБОТАЕТ ОФЛАЙН · ДАННЫЕ ОСТАЮТСЯ НА МАКЕ</p>
     </div>
-
-    <aside class="report" aria-hidden="true">
-      <div class="report-head"><span>Диагностический отчёт</span><span>A2159 · MBP 13" 2019</span></div>
-      <ul>
-        <li style="--i:0"><span class="led"></span>Дисплей<b class="v ok">OK</b></li>
-        <li style="--i:1"><span class="led"></span>Клавиатура<b class="v ok">OK</b></li>
-        <li style="--i:2"><span class="led warn"></span>Батарея<b class="v w">1 181 ЦИКЛ</b></li>
-        <li style="--i:3"><span class="led"></span>Порты USB-C<b class="v ok">OK</b></li>
-        <li style="--i:4"><span class="led bad"></span>Динамики<b class="v b">ХРИПЯТ</b></li>
-        <li style="--i:5"><span class="led"></span>Touch ID<b class="v ok">12 КАСАНИЙ</b></li>
-        <li style="--i:6"><span class="led"></span>Температуры<b class="v ok">OK</b></li>
-        <li style="--i:7"><span class="led"></span>Kernel panics<b class="v ok">НЕТ</b></li>
-      </ul>
-      <div class="report-foot"><span>ПРОВЕРЕНО 29 / 29</span><b>PDF ГОТОВ</b></div>
-    </aside>
   </section>
+  <div class="tear"></div>
+</div>
 
-  <section id="features" class="wrap features">
+<main>
+  <section id="features" class="wrap">
+    <p class="sec-sub">Отчёт · Раздел 01 — Системы <span class="stamp">31 ПУНКТ</span></p>
     <h2>Всё, что проверяет мастер в сервисе, — в одной программе</h2>
     <table class="spec">
       <thead><tr><th scope="col">Система</th><th scope="col">Что проверяется</th><th scope="col">Примечание</th></tr></thead>
@@ -81,7 +71,8 @@
     <p class="spec-note">В ЧЕК-ЛИСТЕ 31 ПУНКТ · ПОДСТРАИВАЕТСЯ ПОД КАЖДУЮ ИЗ 72 МОДЕЛЕЙ MACBOOK</p>
   </section>
 
-  <section class="wrap shots">
+  <section class="wrap">
+    <p class="sec-sub">Отчёт · Раздел 02 — Свидетельства</p>
     <h2>Как это выглядит</h2>
     <div class="shots-grid">
       <figure>
@@ -129,18 +120,18 @@
     </div>
   </section>
 
-  <section class="how">
-    <div class="wrap">
-      <h2>Десять минут — от скачивания до вердикта</h2>
-      <ol class="steps">
-        <li><b>Запустите.</b> Установка не нужна: скачали, открыли — программа сама узнала модель макбука и собрала под неё чек-лист.</li>
-        <li><b>Пройдите по списку.</b> Что можно, программа проверит сама. В остальном проведёт за руку: экран, звук, клавиатура, датчики.</li>
-        <li><b>Заберите вердикт.</b> У каждой проверки один исход: чёткое OK или названный дефект. Всё это — в PDF, хоть отправляй, хоть печатай.</li>
-      </ol>
-    </div>
+  <section class="wrap">
+    <p class="sec-sub">Отчёт · Раздел 03 — Процедура</p>
+    <h2>Десять минут — от скачивания до вердикта</h2>
+    <ol class="steps">
+      <li><b>Запустите.</b> Установка не нужна: скачали, открыли — программа сама узнала модель макбука и собрала под неё чек-лист.</li>
+      <li><b>Пройдите по списку.</b> Что можно, программа проверит сама. В остальном проведёт за руку: экран, звук, клавиатура, датчики.</li>
+      <li><b>Заберите вердикт.</b> У каждой проверки один исход: чёткое OK или названный дефект. Всё это — в PDF, хоть отправляй, хоть печатай.</li>
+    </ol>
   </section>
 
   <section id="download" class="wrap dl">
+    <p class="sec-sub">Отчёт · Раздел 04 — Загрузка</p>
     <h2>Скачайте сейчас — и через десять минут этот мак уже проверен.</h2>
     <p class="dl-sub">Бесплатная версия — навсегда: открыты 19 проверок из 31, без аккаунтов и пробных таймеров. Полная открывает все тесты и PDF-отчёт.</p>
     <div class="cta-row">
@@ -172,7 +163,8 @@
     </div>
   </section>
 
-  <section id="pricing" class="wrap pricing">
+  <section id="pricing" class="wrap">
+    <p class="sec-sub">Отчёт · Раздел 05 — Цены <span class="stamp">БЕЗ ПОДПИСКИ</span></p>
     <h2>Одна покупка. Без подписки.</h2>
     <div class="plans">
       <article class="plan">
@@ -192,7 +184,7 @@
         <a class="btn-primary" href="LS_CHECKOUT_PERSONAL_LIVE">Купить Personal — $12</a>
         -->
       </article>
-      <article class="plan">
+      <article class="plan hot">
         <h3>Service</h3>
         <p class="price">$39</p>
         <p class="plan-for">Для сервисов и тех, кто перепродаёт маки</p>
@@ -214,6 +206,7 @@
   </section>
 
   <section id="faq" class="wrap faq">
+    <p class="sec-sub">Отчёт · Раздел 06 — Вопросы</p>
     <h2>Честные вопросы</h2>
     <details><summary>Что умеет бесплатная версия?</summary><p>19 проверок из 31 открыты насовсем: живая проверка портов, дисплей, клавиатура, трекпад с Force Touch, Touch ID, камера, микрофон, Wi-Fi, Bluetooth, зарядка и другие. Полная версия добавляет батарею, SSD, динамики, стресс-тесты, остальные датчики и PDF-отчёт. Никакого пробного срока: бесплатное не отключится никогда.</p></details>
     <details><summary>Сколько маков можно проверить одним ключом Personal?</summary><p>Два мака включено — обычно ваш собственный и тот, что покупаете. Каждый мак закрепляется за ключом навсегда, поэтому повторные проверки того же мака всегда бесплатны. Понадобится проверить ещё один? Докупите слот прямо из программы в два клика — цену покажет магазин, оплата привяжется к вашему ключу автоматически. А сервисам, которые проверяют маки каждый день, выгоднее Service — маки без ограничений, лицензия на флешке.</p></details>
@@ -235,6 +228,26 @@
     <a href="mailto:yukkaperehenen@gmail.com">yukkaperehenen@gmail.com</a> · <a href="../privacy.html">Конфиденциальность (EN)</a> · <a href="../terms.html">Условия (EN)</a> · <a href="../refunds.html">Возвраты (EN)</a> · © 2026
   </div>
 </footer>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import { initHero } from '../js/hero.js';
+initHero({
+  container: document.getElementById('hero3d'),
+  assets: {
+    model: '../assets/hero/mac.glb',
+    hdr: '../assets/hero/studio.hdr',
+    screen: '../assets/hero/app-screen.png',
+    battSegs: ['../assets/hero/battseg-0.png', '../assets/hero/battseg-1.png', '../assets/hero/battseg-2.png'],
+    draco: 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/libs/draco/'
+  }
+});
+</script>
 
 </body>
 </html>
