@@ -136,6 +136,10 @@ const PART_DEFS_DATA = [
 // container — пустой div (absolute, во всю секцию героя); assets — url-ы:
 // { model, hdr, screen, battSegs: [url,url,url], draco }
 export function initHero({ container, assets }) {
+  // ?edit=1 — режим расстановки бирок: мак раскрыт, бирки и узлы линий
+  // перетаскиваются, позиции копятся в localStorage, кнопка COPY LAYOUT
+  // отдаёт готовую константу FIXED. На боевой странице режим выключен.
+  const EDIT = new URLSearchParams(location.search).has('edit');
   const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const desktop = matchMedia('(hover: hover) and (pointer: fine)').matches && innerWidth >= 1000;
   if (!desktop || prefersReduced) return false;
@@ -480,8 +484,38 @@ loader.load(assets.model, (gltf) => {
     // Якорь в локальных координатах узла — едет вместе с деталью.
     const LAYOUT = { display: ['L', 0], keyboard: ['L', 1], trackpad: ['L', 2], battery: ['L', 3],
                      camera: ['R', 0], body: ['R', 1], touchid: ['R', 2], speaker: ['R', 3] };
+    // инфраструктура режима расстановки
+    const savedLayout = EDIT ? JSON.parse(localStorage.getItem('cmm_layout') || '{}') : {};
+    function layoutObj(round) {
+      const o = {};
+      for (const [k2, p2] of parts) {
+        const e2 = {};
+        if (p2.userPos) { e2.fx = round ? +p2.userPos.fx.toFixed(4) : p2.userPos.fx; e2.fy = round ? +p2.userPos.fy.toFixed(4) : p2.userPos.fy; }
+        if (p2.linePos) { e2.t = round ? +p2.linePos.t.toFixed(3) : p2.linePos.t; e2.off = round ? +p2.linePos.off.toFixed(1) : p2.linePos.off; }
+        if (Object.keys(e2).length) o[k2] = e2;
+      }
+      return o;
+    }
+    function saveLayout() { if (EDIT) localStorage.setItem('cmm_layout', JSON.stringify(layoutObj(false))); }
+    if (EDIT) {
+      const btn = document.createElement('button');
+      btn.textContent = 'COPY LAYOUT';
+      btn.style.cssText = 'position:absolute;z-index:40;left:16px;bottom:16px;font:600 12px ui-monospace,monospace;letter-spacing:.08em;color:#ece7dc;background:rgba(20,18,14,.9);border:1px solid #ffb224;padding:10px 16px;cursor:pointer;pointer-events:auto';
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(JSON.stringify(layoutObj(true), null, 2)).then(() => {
+          btn.textContent = 'СКОПИРОВАНО ✓';
+          setTimeout(() => { btn.textContent = 'COPY LAYOUT'; }, 1600);
+        });
+      });
+      container.appendChild(btn);
+      const hint = document.createElement('div');
+      hint.textContent = 'РЕЖИМ РАССТАНОВКИ: тяни бирки и жёлтые узлы линий · двойной клик — сброс · потом COPY LAYOUT';
+      hint.style.cssText = 'position:absolute;z-index:40;left:16px;bottom:60px;font:11px ui-monospace,monospace;letter-spacing:.06em;color:#b8ae9c;background:rgba(20,18,14,.8);padding:6px 12px;pointer-events:none';
+      container.appendChild(hint);
+    }
+
     const leads = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    leads.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;';
+    leads.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:' + (EDIT ? 30 : 10) + ';';
     hero.appendChild(leads);
     // зафиксированная раскладка бирок и изломов линий (подобрана Юрой 2026-08-15):
     // fx/fy — позиция бирки в долях героя; t/off — излом линии (доля вдоль + перпендикуляр)
@@ -508,9 +542,30 @@ loader.load(assets.model, (gltf) => {
       el.className = 'callout ' + side;
       el.innerHTML = p.label + '<b class="' + p.cls + '">' + p.verdict + '</b>';
       hero.appendChild(el);
-      const sp = FIXED[k] || {};
+      const sp = (EDIT && savedLayout[k]) || FIXED[k] || {};
       if (sp.fx !== undefined) p.userPos = { fx: sp.fx, fy: sp.fy };
       if (sp.t !== undefined) p.linePos = { t: sp.t, off: sp.off };
+      if (EDIT) {
+        el.addEventListener('pointerdown', e => {
+          e.preventDefault(); e.stopPropagation();
+          try { el.setPointerCapture(e.pointerId); } catch (_) {}
+          const r = hero.getBoundingClientRect();
+          p.dragOff = { x: parseFloat(el.style.left) - (e.clientX - r.left), y: parseFloat(el.style.top) - (e.clientY - r.top) };
+          el.style.cursor = 'grabbing';
+        });
+        el.addEventListener('pointermove', e => {
+          if (!p.dragOff) return;
+          e.stopPropagation();
+          const r = hero.getBoundingClientRect();
+          p.userPos = { fx: (e.clientX - r.left + p.dragOff.x) / r.width, fy: (e.clientY - r.top + p.dragOff.y) / r.height };
+        });
+        const endDrag = () => { if (!p.dragOff) return; p.dragOff = null; el.style.cursor = 'grab'; saveLayout(); };
+        el.addEventListener('pointerup', endDrag);
+        el.addEventListener('pointercancel', endDrag);
+        el.addEventListener('dblclick', () => { p.userPos = null; saveLayout(); });
+        el.style.cursor = 'grab';
+        el.style.pointerEvents = 'auto';
+      }
       // ломаная выноска: бирка → узел излома → деталь. Излом хранится
       // относительно отрезка (доля t вдоль + перпендикулярный сдвиг off) —
       // при движении концов угол следует за геометрией
@@ -533,6 +588,38 @@ loader.load(assets.model, (gltf) => {
       anchorNode.updateMatrixWorld(true);
       p.anchorNode = anchorNode;
       p.anchorLocal = anchorNode.worldToLocal(w.clone());
+      if (EDIT) {
+        const handle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        handle.setAttribute('r', '5');
+        handle.setAttribute('fill', '#ffb224');
+        handle.setAttribute('opacity', '0');
+        handle.style.cursor = 'grab';
+        handle.style.pointerEvents = 'auto';
+        leads.appendChild(handle);
+        handle.addEventListener('pointerdown', e => {
+          e.preventDefault(); e.stopPropagation();
+          try { handle.setPointerCapture(e.pointerId); } catch (_) {}
+          p.lineDrag = true; handle.style.cursor = 'grabbing';
+        });
+        handle.addEventListener('pointermove', e => {
+          if (!p.lineDrag || !p._A) return;
+          e.stopPropagation();
+          const r = hero.getBoundingClientRect();
+          const Px = e.clientX - r.left, Py = e.clientY - r.top;
+          const dx = p._B.x - p._A.x, dy = p._B.y - p._A.y;
+          const L2 = dx * dx + dy * dy;
+          if (L2 < 1) return;
+          const L = Math.sqrt(L2);
+          const t = Math.max(0.05, Math.min(0.95, ((Px - p._A.x) * dx + (Py - p._A.y) * dy) / L2));
+          const off = ((Px - p._A.x) * -dy + (Py - p._A.y) * dx) / L;
+          p.linePos = { t, off };
+        });
+        const endLine = () => { if (!p.lineDrag) return; p.lineDrag = false; handle.style.cursor = 'grab'; saveLayout(); };
+        handle.addEventListener('pointerup', endLine);
+        handle.addEventListener('pointercancel', endLine);
+        handle.addEventListener('dblclick', () => { p.linePos = null; saveLayout(); });
+        p.leadHandle = handle;
+      }
       p.calloutEl = el;
       p.leadLine = ln;
       p.leadDotA = dotA;
@@ -642,6 +729,7 @@ let openT = 0;
     ptr.x = (px / r.width) * 2 - 1;
     ptr.y = -(py / r.height) * 2 + 1;
     ray.setFromCamera(ptr, camera);
+    if (EDIT) return; // в режиме расстановки мак раскрыт постоянно
     const hitAny = zoneMeshes.length ? ray.intersectObjects(zoneMeshes).length > 0 : false;
     if (hitAny) { hoverKey = 'open'; openT = performance.now(); }
     // гистерезис на закрытие: короткий проскок мимо конверта не схлопывает
@@ -650,6 +738,7 @@ let openT = 0;
     hero.style.cursor = hoverKey ? 'pointer' : 'default';
   });
   hero.addEventListener('pointerleave', () => {
+    if (EDIT) return;
     hoverKey = null;
     for (const p of parts.values()) p.tgt = 0;
   });
@@ -664,7 +753,6 @@ function resize() {
   // на заголовок слева; бирки живут в долях экрана — двигаем их отдельно
   const shift = Math.min(4.6, Math.max(0, (w / h - 1.2) * 6.2));
   if (rootBaseX !== null) root.position.x = rootBaseX + shift;
-  calloutShift = shift * (w / 12);
   // ширины бирок кэшируем: нужны каждый кадр, чтобы правые не ушли за экран
   for (const p of parts.values()) if (p.calloutEl) p.cw = p.calloutEl.offsetWidth;
 }
@@ -684,6 +772,7 @@ const BREATH_LINK = { camera: 'display', speaker: 'battery', body: 'battery', to
 function frame(ms) {
   const tSec = ms * 0.001;
   for (const [k, p] of parts) {
+    if (EDIT) p.tgt = 1;
     p.cur += (p.tgt - p.cur) * (prefersReduced ? 0.3 : (p.tgt > p.cur ? 0.07 : 0.1));
     const e = ease(Math.max(0, Math.min(1, p.cur)));
     const slot = BREATH_ORDER.indexOf(BREATH_LINK[k] || k);
@@ -709,7 +798,7 @@ function frame(ms) {
     const n = colCount[p.side];
     let bx = p.side === 'L' ? W * 0.225 : W * 0.775;
     let ty = H * (0.2 + (n > 1 ? p.slot * 0.55 / (n - 1) : 0));
-    if (p.userPos) { bx = p.userPos.fx * W + calloutShift; ty = p.userPos.fy * H; }
+    if (p.userPos) { bx = p.userPos.fx * W; ty = p.userPos.fy * H; }
     if (p.side === 'R') bx = Math.min(bx, W - 16 - (p.cw || 150));
     p.calloutEl.style.left = bx + 'px';
     p.calloutEl.style.top = ty + 'px';
@@ -733,6 +822,11 @@ function frame(ms) {
     p.leadDot.setAttribute('cx', ax.toFixed(1));
     p.leadDot.setAttribute('cy', ay.toFixed(1));
     p.leadDot.setAttribute('opacity', (0.8 * vis).toFixed(2));
+    if (p.leadHandle) {
+      p.leadHandle.setAttribute('cx', mx.toFixed(1));
+      p.leadHandle.setAttribute('cy', my.toFixed(1));
+      p.leadHandle.setAttribute('opacity', (0.9 * vis).toFixed(2));
+    }
   }
 
   const bpp = parts.get('battery');
