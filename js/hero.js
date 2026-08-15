@@ -211,6 +211,7 @@ scene.add(dust);
 const root = new THREE.Group();
 scene.add(root);
 let rootBaseY = 0;
+let rootBaseX = null; // база смещения по X; на широких экранах мак уводится правее текста
 
 // логические детали: suffix узла →描述. Заполняется после диагностики.
 const PART_DEFS = PART_DEFS_DATA;
@@ -239,6 +240,8 @@ loader.load(assets.model, (gltf) => {
   root.position.z = -c.z;
   root.rotation.y = -Math.PI / 4;
   rootBaseY = root.position.y;
+  rootBaseX = root.position.x;
+  resize(); // применить широкоэкранный сдвиг сразу после загрузки
   const size2 = bb2.getSize(new THREE.Vector3());   // габариты уже в юнитах сцены
 
   // регистрация деталей: каждая — один или несколько узлов по суффиксам имён.
@@ -654,6 +657,10 @@ function resize() {
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
+  // на широких окнах уводим мак правее, чтобы не налезал на заголовок слева
+  if (rootBaseX !== null) {
+    root.position.x = rootBaseX + Math.min(1.4, Math.max(0, (w / h - 1.35) * 1.8));
+  }
 }
 addEventListener('resize', resize);
 resize();
