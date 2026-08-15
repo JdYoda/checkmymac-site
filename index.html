@@ -20,24 +20,25 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=20260804">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20260815">
 </head>
 <body>
 
-<header class="wrap nav">
-  <a class="brand" href="/">CheckMyMac&nbsp;Pro</a>
-  <div class="nav-right">
-    <a class="lang" href="/ru/" lang="ru" hreflang="ru">RU</a>
-    <a class="nav-cta" href="#download">DOWNLOAD — FREE</a>
-  </div>
-</header>
+<div class="device">
+  <header class="wrap nav">
+    <a class="brand" href="/">CheckMyMac&nbsp;Pro</a>
+    <div class="nav-right">
+      <a class="lang" href="/ru/" lang="ru" hreflang="ru">RU</a>
+      <a class="nav-cta" href="#download">DOWNLOAD — FREE</a>
+    </div>
+  </header>
 
-<main>
-  <section class="wrap hero">
-    <div>
-      <p class="stat-figure" aria-hidden="true"><span class="tick"></span><span class="plus">+</span></p>
-      <span class="visually-hidden">30+</span>
-      <h1 class="stat-qualifier">hardware checks. Every hidden defect has nowhere to hide.</h1>
+  <section class="hero" aria-label="MacBook teardown">
+    <div id="hero3d"></div>
+    <img class="hero-poster" src="assets/hero/poster.webp" srcset="assets/hero/poster-mobile.webp 800w, assets/hero/poster.webp 1400w" sizes="100vw" alt="MacBook Pro opened into parts, every part labeled with a diagnostic verdict" width="1200" height="792">
+    <div class="hero-copy">
+      <h1>Every part of a MacBook, <span>checked</span>.</h1>
       <p class="sub">CheckMyMac Pro inspects every subsystem of a MacBook — battery, ports, sensors, Touch&nbsp;ID, thermals — and hands you a PDF report. Built by a Mac repair shop for people who buy, sell and service Macs. Free version included — no signup, no trial clock.</p>
       <div class="cta-row">
         <a class="btn-primary" href="https://github.com/JdYoda/checkmymac-site/releases/latest/download/CheckMyMacPro-1.5.21.dmg">Download free for macOS</a>
@@ -45,24 +46,13 @@
       </div>
       <p class="hero-note">NOTARIZED BY APPLE · RUNS OFFLINE · NOTHING LEAVES THE MAC</p>
     </div>
-
-    <aside class="report" aria-hidden="true">
-      <div class="report-head"><span>Diagnostic report</span><span>A2159 · MBP 13" 2019</span></div>
-      <ul>
-        <li style="--i:0"><span class="led"></span>Display<b class="v ok">OK</b></li>
-        <li style="--i:1"><span class="led"></span>Keyboard<b class="v ok">OK</b></li>
-        <li style="--i:2"><span class="led warn"></span>Battery<b class="v w">1 181 CYCLES</b></li>
-        <li style="--i:3"><span class="led"></span>USB-C ports<b class="v ok">OK</b></li>
-        <li style="--i:4"><span class="led bad"></span>Speakers<b class="v b">CRACKLING</b></li>
-        <li style="--i:5"><span class="led"></span>Touch ID<b class="v ok">12 TOUCHES</b></li>
-        <li style="--i:6"><span class="led"></span>Thermals &amp; fans<b class="v ok">OK</b></li>
-        <li style="--i:7"><span class="led"></span>Kernel panics<b class="v ok">NONE</b></li>
-      </ul>
-      <div class="report-foot"><span>CHECKED 29 / 29</span><b>PDF READY</b></div>
-    </aside>
   </section>
+  <div class="tear"></div>
+</div>
 
-  <section id="features" class="wrap features">
+<main>
+  <section id="features" class="wrap">
+    <p class="sec-sub">Report · Section 01 — Systems <span class="stamp">31 CHECKS</span></p>
     <h2>The full service-bench inspection, in one app</h2>
     <table class="spec">
       <thead><tr><th scope="col">System</th><th scope="col">What's tested</th><th scope="col">Note</th></tr></thead>
@@ -80,7 +70,8 @@
     <p class="spec-note">31-ITEM CHECKLIST · ADAPTS AUTOMATICALLY TO EACH OF 72 MACBOOK MODELS</p>
   </section>
 
-  <section class="wrap shots">
+  <section class="wrap">
+    <p class="sec-sub">Report · Section 02 — Evidence</p>
     <h2>Inside the app</h2>
     <div class="shots-grid">
       <figure>
@@ -128,18 +119,18 @@
     </div>
   </section>
 
-  <section class="how">
-    <div class="wrap">
-      <h2>Ten minutes from download to verdict</h2>
-      <ol class="steps">
-        <li><b>Run it.</b> No installation — download, open, and the app identifies the exact MacBook model and builds its checklist.</li>
-        <li><b>Walk the checklist.</b> Automatic probes read the hardware; guided tests walk you through screen, sound, keyboard and sensors.</li>
-        <li><b>Get the verdict.</b> Every check ends in a clear OK or a named defect — exported as a PDF you can send or print.</li>
-      </ol>
-    </div>
+  <section class="wrap">
+    <p class="sec-sub">Report · Section 03 — Procedure</p>
+    <h2>Ten minutes from download to verdict</h2>
+    <ol class="steps">
+      <li><b>Run it.</b> No installation — download, open, and the app identifies the exact MacBook model and builds its checklist.</li>
+      <li><b>Walk the checklist.</b> Automatic probes read the hardware; guided tests walk you through screen, sound, keyboard and sensors.</li>
+      <li><b>Get the verdict.</b> Every check ends in a clear OK or a named defect — exported as a PDF you can send or print.</li>
+    </ol>
   </section>
 
   <section id="download" class="wrap dl">
+    <p class="sec-sub">Report · Section 04 — Download</p>
     <h2>Download it now. Test a Mac in the next ten minutes.</h2>
     <p class="dl-sub">The free version is free forever: 19 of 31 checks open, no account, no trial countdown. The full version unlocks every test and the PDF report.</p>
     <div class="cta-row">
@@ -171,7 +162,8 @@
     </div>
   </section>
 
-  <section id="pricing" class="wrap pricing">
+  <section id="pricing" class="wrap">
+    <p class="sec-sub">Report · Section 05 — Pricing <span class="stamp">NO SUBSCRIPTION</span></p>
     <h2>One purchase. No subscription.</h2>
     <div class="plans">
       <article class="plan">
@@ -191,7 +183,7 @@
         <a class="btn-primary" href="LS_CHECKOUT_PERSONAL_LIVE">Buy Personal — $12</a>
         -->
       </article>
-      <article class="plan">
+      <article class="plan hot">
         <h3>Service</h3>
         <p class="price">$39</p>
         <p class="plan-for">For repair shops and refurbishers</p>
@@ -213,6 +205,7 @@
   </section>
 
   <section id="faq" class="wrap faq">
+    <p class="sec-sub">Report · Section 06 — FAQ</p>
     <h2>Fair questions</h2>
     <details><summary>What's in the free version?</summary><p>19 of 31 checks are open forever: the live port probe, display, keyboard, trackpad with Force Touch, Touch ID, camera, microphone, Wi-Fi, Bluetooth, charging and more. The full version unlocks battery, SSD, speakers, stress tests, the remaining sensors and the PDF report. No trial clock — the free checks never expire.</p></details>
     <details><summary>How many Macs can I check with one Personal key?</summary><p>Two Macs are included — typically your own and the one you're buying. Each Mac keeps its slot forever, so re-checking the same machine is always free. Need to check another Mac later? Add a slot from inside the app in two clicks; the store shows the price and payment links to your key automatically. Repair shops that check Macs daily should look at Service — unlimited Macs from a USB stick.</p></details>
@@ -234,6 +227,26 @@
     <a href="mailto:yukkaperehenen@gmail.com">yukkaperehenen@gmail.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="refunds.html">Refunds</a> · © 2026
   </div>
 </footer>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import { initHero } from './js/hero.js';
+initHero({
+  container: document.getElementById('hero3d'),
+  assets: {
+    model: 'assets/hero/mac.glb',
+    hdr: 'assets/hero/studio.hdr',
+    screen: 'assets/hero/app-screen.png',
+    battSegs: ['assets/hero/battseg-0.png', 'assets/hero/battseg-1.png', 'assets/hero/battseg-2.png'],
+    draco: 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/libs/draco/'
+  }
+});
+</script>
 
 </body>
 </html>
