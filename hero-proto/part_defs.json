@@ -1,0 +1,126 @@
+[
+ {
+  "key": "display",
+  "suffixes": [
+   "59",
+   "60"
+  ],
+  "offset": [
+   0,
+   0.052,
+   0.13
+  ],
+  "label": "DISPLAY",
+  "verdict": "OK",
+  "cls": "ok",
+  "also": [
+   "camera"
+  ]
+ },
+ {
+  "key": "camera",
+  "suffixes": [
+   "49"
+  ],
+  "offset": [
+   0,
+   0.056,
+   0.19
+  ],
+  "label": "CAMERA",
+  "verdict": "OK",
+  "cls": "ok"
+ },
+ {
+  "key": "keyboard",
+  "suffixes": [
+   "39"
+  ],
+  "offset": [
+   0,
+   0.05,
+   0
+  ],
+  "label": "KEYBOARD",
+  "verdict": "OK",
+  "cls": "ok"
+ },
+ {
+  "key": "touchid",
+  "suffixes": [
+   "34",
+   "36"
+  ],
+  "offset": [
+   0,
+   0.06,
+   0
+  ],
+  "label": "TOUCH ID",
+  "verdict": "12 TOUCHES",
+  "cls": "ok"
+ },
+ {
+  "key": "trackpad",
+  "suffixes": [
+   "40"
+  ],
+  "offset": [
+   0,
+   0.05,
+   0
+  ],
+  "label": "TRACKPAD",
+  "verdict": "OK",
+  "cls": "ok"
+ },
+ {
+  "key": "vents",
+  "suffixes": [
+   "17"
+  ],
+  "offset": [
+   0,
+   0.04,
+   -0.012
+  ],
+  "label": "VENTS",
+  "verdict": "OK",
+  "cls": "ok"
+ },
+ {
+  "key": "battery",
+  "suffixes": [
+   "31"
+  ],
+  "offset": [
+   0,
+   -0.2,
+   0
+  ],
+  "label": "BATTERY",
+  "verdict": "1 181 CYCLES",
+  "cls": "warn",
+  "also": [
+   "speaker"
+  ]
+ },
+ {
+  "key": "body",
+  "suffixes": [
+   "6",
+   "32",
+   "33",
+   "42",
+   "21"
+  ],
+  "offset": [
+   0,
+   0.006,
+   0
+  ],
+  "label": "USB-C PORTS",
+  "verdict": "OK",
+  "cls": "ok"
+ }
+]
