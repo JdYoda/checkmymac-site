@@ -84,8 +84,9 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 .spec-note { margin-top: 18px; font: 11px var(--font-m); letter-spacing: .14em; color: var(--dim); }
 
 /* скриншоты — белые карточки-полароиды */
-.shots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; align-items: start; }
-.shots-grid figure { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 12px 12px 14px; }
+/* кирпичная кладка: карточки разной высоты подтягиваются вверх, без дыр */
+.shots-grid { column-count: 3; column-gap: 26px; }
+.shots-grid figure { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 12px 12px 14px; break-inside: avoid; margin-bottom: 26px; }
 .shots-grid img { width: 100%; height: auto; display: block; }
 .shots-grid figcaption { font: 10.5px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-top: 12px; }
 
@@ -146,6 +147,7 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 /* ── мобильные ──────────────────────────────────────────────────────── */
 @media (max-width: 1000px) {
   .hero { height: clamp(420px, 64vh, 640px); }
+  .shots-grid { column-count: 2; }
 }
 @media (max-width: 768px) {
   section { padding: 48px 0; }
@@ -158,6 +160,7 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
   .spec td { border-bottom: 0; padding: 2px 0; }
   .spec td:first-child { width: auto; }
   .spec td:last-child { text-align: left; }
-  .shots-grid, .tiers, .plans { grid-template-columns: 1fr; }
+  .shots-grid { column-count: 1; }
+  .tiers, .plans { grid-template-columns: 1fr; }
   .tear { height: 20px; }
 }
