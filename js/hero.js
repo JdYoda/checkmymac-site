@@ -713,6 +713,7 @@ loader.load(assets.model, (gltf) => {
 const ray = new THREE.Raycaster();
 const ptr = new THREE.Vector2();
 let hoverKey = null;
+let appear = 0;   // плавное проявление бирок после загрузки модели
 let pendingKey = null, pendingT = 0;
 let mouseX = 0, mouseY = 0;
 
@@ -801,7 +802,7 @@ function frame(ms) {
     if (p.side === 'R') bx = Math.min(bx, W - 16 - (p.cw || 150));
     p.calloutEl.style.left = bx + 'px';
     p.calloutEl.style.top = ty + 'px';
-    const vis = Math.max(0, Math.min(1, (p.cur - 0.4) / 0.45));
+    const vis = appear;   // бирки висят всегда, не только при наведении
     p.calloutEl.style.opacity = vis.toFixed(2);
     p.calloutEl.classList.toggle('on', vis > 0.5);
     const Ax = p.side === 'L' ? bx + 6 : bx - 6, Ay = ty;
@@ -827,6 +828,8 @@ function frame(ms) {
       p.leadHandle.setAttribute('opacity', (0.9 * vis).toFixed(2));
     }
   }
+
+  if (parts.size) appear = Math.min(1, appear + 0.015);
 
   const bpp = parts.get('battery');
   batteryGlow.intensity = bpp ? bpp.cur * 13 : 0;
