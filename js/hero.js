@@ -170,18 +170,11 @@ new RGBELoader().load(assets.hdr, tex => {
   scene.environment = tex;
 });
 
-// Тёплая подсветка динамиков. Раньше здесь стоял PointLight радиусом 12 в
-// фиксированной точке: он заливал полкорпуса и «просвечивал» сквозь мак.
-// Слои (light.layers) задачу не решают — проверено замером: рендерер применяет
-// источник ко всем объектам прохода, крышка освещалась одинаково со слоем и без.
-// Поэтому свет живёт в самих материалах динамика: собственное свечение
-// поверхности физически не может попасть на корпус или крышку.
-// Тёплые лампы динамиков: по одной в нише корпуса над каждым динамиком, едут
-// вместе с ним. Радиус зажат до 1.7 — свет собирается на самом динамике и почти
-// не ложится на крышку. Значения подобраны Юрой на живой странице 2026-08-15.
-const LAMP_I = 3.2;   // яркость при полном выезде
-const LAMP_D = 1.7;   // радиус свечения
-const spkLamps = [];
+// Тёплой подсветки в нижней части сцены нет намеренно (решение Юры 2026-08-15).
+// Здесь стоял PointLight, освещавший батарею, — он заливал полкорпуса и читался
+// как свечение, просвечивающее сквозь мак. Перенос ламп к динамикам, ограничение
+// радиусом и вариант со свечением материалов результата не дали: точечный
+// источник всегда даёт сконцентрированное пятно. Свет убран целиком.
 
 // холодная подсветка внутренней панели крышки — включается при отъезде дисплея
 const displayGlow = new THREE.PointLight(0x86aaff, 0, 9);
@@ -433,10 +426,6 @@ loader.load(assets.model, (gltf) => {
       flex.position.set(dir * -0.12, 0.03, 1.62);
       spG.add(flex);
       spG.traverse(o => { if (o.isMesh) { o.userData.part = 'speaker'; spParts.meshes.push(o); } });
-      const lamp = new THREE.PointLight(0xffb224, 0, LAMP_D, 2);
-      lamp.position.set(0, 0.62, -0.55);
-      spG.add(lamp);
-      spkLamps.push(lamp);
       // калибровка вектора вниз для группы
       const base2 = spG.position.clone();
       const inv3 = new THREE.Matrix4().copy(spG.parent.matrixWorld).invert();
@@ -844,9 +833,6 @@ function frame(ms) {
 
   if (parts.size) appear = Math.min(1, appear + 0.015);
 
-  const spp = parts.get('speaker');
-  const spkCur = spp ? spp.cur : 0;
-  for (const l of spkLamps) l.intensity = spkCur * LAMP_I;
   const dpp = parts.get('display');
   displayGlow.intensity = dpp ? (dpp.eff || 0) * 7 : 0;
   if (backSheet) backSheet.material.opacity = dpp ? (dpp.eff || 0) * 0.4 : 0;
