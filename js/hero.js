@@ -217,7 +217,8 @@ scene.add(dust);
 const root = new THREE.Group();
 scene.add(root);
 let rootBaseY = 0;
-let rootBaseX = null;  // база смещения по X; на широких экранах мак уводится правее текста
+let rootBaseX = null;   // база смещения по X; на широких экранах мак уводится правее текста
+let textGuard = null;   // правая граница текстовой колонки; бирки за неё не заходят
 
 // логические детали: suffix узла →描述. Заполняется после диагностики.
 const PART_DEFS = PART_DEFS_DATA;
@@ -525,7 +526,7 @@ loader.load(assets.model, (gltf) => {
       camera: { fx: 0.7262, fy: 0.1876, t: 0.446, off: 0.1 },
       keyboard: { fx: 0.4913, fy: 0.5109, t: 0.224, off: 34.8 },
       touchid: { fx: 0.8572, fy: 0.5922, t: 0.895, off: 26.6 },
-      trackpad: { fx: 0.4480, fy: 0.6997, t: 0.370, off: 0.3 },
+      trackpad: { fx: 0.4544, fy: 0.6625, t: 0.370, off: 0.3 },
       battery: { fx: 0.5577, fy: 0.8443, t: 0.420, off: -0.2 },
       body: { fx: 0.8514, fy: 0.6942 },
       speaker: { fx: 0.8045, fy: 0.8488, t: 0.471, off: -17.7 }
@@ -756,6 +757,14 @@ function resize() {
   if (rootBaseX !== null) root.position.x = rootBaseX + shift;
   // ширины бирок кэшируем: нужны каждый кадр, чтобы правые не ушли за экран
   for (const p of parts.values()) if (p.calloutEl) p.cw = p.calloutEl.offsetWidth;
+  // правая граница текстовой колонки — за неё бирки не заходят
+  const copyEl = document.querySelector('.hero-copy');
+  if (copyEl && w >= 1000) {
+    const cr = copyEl.getBoundingClientRect(), hr = hero.getBoundingClientRect();
+    textGuard = cr.right - hr.left + 28;
+  } else {
+    textGuard = null;   // на узких экранах текст лежит поверх мака — упор не нужен
+  }
 }
 addEventListener('resize', resize);
 resize();
@@ -801,6 +810,11 @@ function frame(ms) {
     let ty = H * (0.2 + (n > 1 ? p.slot * 0.55 / (n - 1) : 0));
     if (p.userPos) { bx = p.userPos.fx * W; ty = p.userPos.fy * H; }
     if (p.side === 'R') bx = Math.min(bx, W - 16 - (p.cw || 150));
+    // Бирки не заезжают на текстовую колонку: раскладка задана в долях героя,
+    // а текст стоит фиксированной шириной по центру страницы — чем шире окно,
+    // тем ближе они сходятся. Ручная расстановка Юры при этом сохраняется:
+    // упор срабатывает только там, где бирка реально дошла бы до текста.
+    if (textGuard !== null && bx < textGuard) bx = textGuard;
     p.calloutEl.style.left = bx + 'px';
     p.calloutEl.style.top = ty + 'px';
     const vis = appear;   // бирки висят всегда, не только при наведении
