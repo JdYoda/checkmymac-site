@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<style>
+/* Исходник РУССКОЙ картинки для соцсетей. Снимается Playwright'ом в 1200×630 →  img/og.png
+   Шрифты локальные (те же, что на сайте) — интернет при съёмке не нужен. */
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 400 700;
+  src: url(../assets/fonts/space-grotesk-latin.woff2) format("woff2"); font-display: block; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400 600;
+  src: url(../assets/fonts/jetbrains-mono-cyrillic.woff2) format("woff2"); font-display: block;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400 600;
+  src: url(../assets/fonts/jetbrains-mono-latin.woff2) format("woff2"); font-display: block; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body {
+  background: #211f1c;
+  color: #ece7dc;
+  font-family: "Space Grotesk", -apple-system, sans-serif;
+  position: relative;
+}
+
+/* кадр героя справа, уходит за край и растворяется в фоне */
+.mac {
+  position: absolute; right: 8px; top: 56%; transform: translateY(-50%);
+  width: 1010px; height: 553px;
+  background: url(og-mac.png) center / contain no-repeat;
+}
+.mac::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, #211f1c 0%, rgba(33,31,28,.9) 12%, rgba(33,31,28,.35) 34%, transparent 52%);
+}
+
+.copy { position: absolute; left: 72px; top: 62px; width: 660px; z-index: 2; }
+
+.brand { display: flex; align-items: center; gap: 13px; font-size: 38px; font-weight: 700; letter-spacing: -.01em; }
+.brand img { width: 40px; height: 40px; border-radius: 9px; display: block; }
+
+h1 { margin-top: 58px; font-size: 64px; font-weight: 700; line-height: 1.02; letter-spacing: -.02em; }
+h1 span { color: #ffca3f; }
+
+.stat { margin-top: 24px; font-size: 23px; font-weight: 500; color: #b8ae9c; line-height: 1.35; }
+.stat b { font-size: 46px; font-weight: 700; color: #e8a512; vertical-align: -6px; margin-right: 12px; }
+
+.foot {
+  position: absolute; left: 72px; bottom: 54px; z-index: 2;
+  font-family: "JetBrains Mono", monospace; font-size: 15px; font-weight: 600;
+  letter-spacing: .11em; color: #8a7f6a; text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+  <div class="mac"></div>
+  <div class="copy">
+    <div class="brand"><img src="appicon.png" alt="">CheckMyMac</div>
+    <h1><span>Уверенность</span><br>в каждой детали.</h1>
+    <p class="stat"><b>30+</b>проверок железа — один PDF-вердикт.</p>
+  </div>
+  <div class="foot">Нотаризовано Apple · Работает офлайн · Есть бесплатная версия</div>
+</body>
+</html>
