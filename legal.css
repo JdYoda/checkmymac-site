@@ -1,9 +1,27 @@
-@import url("css/style.css?v=20260804");
-.legal { max-width: 720px; margin: 0 auto; padding: var(--space-2xl) var(--page-gutter) var(--space-3xl); }
-.legal h1 { font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: -0.015em; margin-bottom: var(--space-2xs); }
-.legal .updated { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--color-ink-3); margin-bottom: var(--space-xl); }
-.legal h2 { font-family: var(--font-display); font-size: 1.25rem; margin: var(--space-xl) 0 var(--space-2xs); max-width: none; }
-.legal p, .legal li { color: var(--color-ink-2); font-size: 0.95rem; }
-.legal ul { padding-left: 1.4rem; margin: var(--space-2xs) 0; }
-.legal b { color: var(--color-ink); }
-.legal a.back { display: inline-block; margin-bottom: var(--space-lg); font-family: var(--font-mono); font-size: var(--text-sm); }
+/* Юридические страницы — стиль «Прибор и бумага» (самодостаточный) */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap");
+:root {
+  --coal: #211f1c; --ink-on-coal: #ece7dc; --dim-on-coal: #b8ae9c;
+  --paper: #f4eee1; --ink: #26211a; --dim: #6b6353; --body: #464034;
+  --amber: #e8a512; --amber-deep: #c8880a; --rule-l: #d5c9b0;
+  --font-d: "Space Grotesk", -apple-system, sans-serif;
+  --font-m: "JetBrains Mono", ui-monospace, monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--font-d); }
+.legal-nav { background: var(--coal); padding: 20px 24px; }
+.legal-nav a { font: 700 17px var(--font-d); color: var(--ink-on-coal); text-decoration: none; }
+.legal-nav a::before { content: ""; display: inline-block; width: 9px; height: 9px; background: var(--amber); margin-right: 9px; }
+.legal { max-width: 720px; margin: 0 auto; padding: 56px 24px 72px; }
+.legal h1 { font: 700 clamp(26px, 3vw, 36px)/1.15 var(--font-d); margin-bottom: 6px; }
+.legal .updated { font: 11px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-bottom: 30px; }
+.legal h2 { font: 700 1.25rem var(--font-d); margin: 30px 0 8px; }
+.legal p, .legal li { color: var(--body); font-size: .96rem; margin-bottom: 8px; }
+.legal ul { padding-left: 1.4rem; margin: 8px 0; }
+.legal b { color: var(--ink); }
+.legal a { color: var(--amber-deep); }
+.legal a.back { display: inline-block; margin-bottom: 26px; font: 600 12px var(--font-m); letter-spacing: .06em; color: var(--dim); text-decoration: none; }
+.legal a.back:hover { color: var(--ink); }
+.legal-foot { background: var(--coal); color: var(--dim-on-coal); padding: 30px 24px 44px; font-size: 13px; text-align: center; }
+.legal-foot a { color: var(--dim-on-coal); }
