@@ -176,9 +176,9 @@ new RGBELoader().load(assets.hdr, tex => {
 // радиусом и вариант со свечением материалов результата не дали: точечный
 // источник всегда даёт сконцентрированное пятно. Свет убран целиком.
 
-// холодная подсветка внутренней панели крышки — включается при отъезде дисплея
-const displayGlow = new THREE.PointLight(0x86aaff, 0, 9);
-scene.add(displayGlow);
+// Холодная подсветка панели крышки — это самосветящийся лист backSheet.
+// Точечного источника здесь нет намеренно: он разливал голубое пятно
+// по клавиатуре (замечено Юрой 2026-08-15).
 let backSheet = null;
 const zoneMeshes = [];
 
@@ -702,7 +702,6 @@ loader.load(assets.model, (gltf) => {
       const dc = dbb.getCenter(new THREE.Vector3());
       const dOff = new THREE.Vector3(0, 0.052, 0.13).multiplyScalar(size2.y)
         .applyAxisAngle(new THREE.Vector3(0, 1, 0), root.rotation.y);
-      displayGlow.position.copy(dc).addScaledVector(dOff, 0.5);
     }
   }
 
@@ -834,8 +833,8 @@ function frame(ms) {
   if (parts.size) appear = Math.min(1, appear + 0.015);
 
   const dpp = parts.get('display');
-  displayGlow.intensity = dpp ? (dpp.eff || 0) * 7 : 0;
-  if (backSheet) backSheet.material.opacity = dpp ? (dpp.eff || 0) * 0.4 : 0;
+  // лист светится сам за двоих: точечный источник убран, он разливал голубое по клавиатуре
+  if (backSheet) backSheet.material.opacity = dpp ? (dpp.eff || 0) * 0.95 : 0;
 
   // корпус статичен: разворот зафиксирован, двигаются только детали
   dust.rotation.y = ms * 0.00001;
