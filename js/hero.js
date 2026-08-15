@@ -140,6 +140,13 @@ export function initHero({ container, assets }) {
   // перетаскиваются, позиции копятся в localStorage, кнопка COPY LAYOUT
   // отдаёт готовую константу FIXED. На боевой странице режим выключен.
   const EDIT = new URLSearchParams(location.search).has('edit');
+  // В правке мак СОБРАН — как его видит посетитель, пока не подвёл мышь. Иначе
+  // выноски настраиваются на раскрытом маке, а на живой странице детали стоят
+  // в других местах и линии уходят вкось (замечено Юрой 2026-08-16).
+  let editOpen = false;
+  if (EDIT) addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); editOpen = !editOpen; }
+  });
   const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const desktop = matchMedia('(hover: hover) and (pointer: fine)').matches && innerWidth >= 1000;
   if (!desktop || prefersReduced) return false;
@@ -162,8 +169,13 @@ scene.background = new THREE.Color(BG);
 scene.fog = new THREE.Fog(BG, 30, 60);
 
 const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 200);
-camera.position.set(-2, 7.5, 26);
-camera.lookAt(0, 2.8, 0);
+// Мак поднят в кадре до уровня строки заголовка (просьба Юры 2026-08-16).
+// Двигаем КАМЕРУ, а не модель: самодельные детали (динамики, дно ниш, кнопка
+// Touch ID, батарея) ставятся по абсолютным координатам сцены и при сдвиге
+// модели остались бы на прежних местах — проверено, разъезжается.
+const LIFT = 1.5;
+camera.position.set(-2, 7.5 - LIFT, 26);
+camera.lookAt(0, 2.8 - LIFT, 0);
 
 new RGBELoader().load(assets.hdr, tex => {
   tex.mapping = THREE.EquirectangularReflectionMapping;
@@ -493,7 +505,6 @@ loader.load(assets.model, (gltf) => {
       for (const [k2, p2] of parts) {
         const e2 = {};
         if (p2.userPos) { e2.fx = round ? +p2.userPos.fx.toFixed(4) : p2.userPos.fx; e2.fy = round ? +p2.userPos.fy.toFixed(4) : p2.userPos.fy; }
-        if (p2.linePos) { e2.t = round ? +p2.linePos.t.toFixed(3) : p2.linePos.t; e2.off = round ? +p2.linePos.off.toFixed(1) : p2.linePos.off; }
         if (Object.keys(e2).length) o[k2] = e2;
       }
       return o;
@@ -511,7 +522,7 @@ loader.load(assets.model, (gltf) => {
       });
       container.appendChild(btn);
       const hint = document.createElement('div');
-      hint.textContent = 'РЕЖИМ РАССТАНОВКИ: тяни бирки и жёлтые узлы линий · двойной клик — сброс · потом COPY LAYOUT';
+      hint.textContent = 'РЕЖИМ РАССТАНОВКИ: тяни бирки · ПРОБЕЛ — собрать/разобрать мак · двойной клик — сброс · потом COPY LAYOUT';
       hint.style.cssText = 'position:absolute;z-index:40;left:16px;bottom:60px;font:11px ui-monospace,monospace;letter-spacing:.06em;color:#b8ae9c;background:rgba(20,18,14,.8);padding:6px 12px;pointer-events:none';
       container.appendChild(hint);
     }
@@ -522,14 +533,14 @@ loader.load(assets.model, (gltf) => {
     // зафиксированная раскладка бирок и изломов линий (подобрана Юрой 2026-08-15):
     // fx/fy — позиция бирки в долях героя; t/off — излом линии (доля вдоль + перпендикуляр)
     const FIXED = {
-      display: { fx: 0.5269, fy: 0.3244, t: 0.225, off: 46.7 },
-      camera: { fx: 0.7262, fy: 0.1876, t: 0.446, off: 0.1 },
-      keyboard: { fx: 0.4913, fy: 0.5109, t: 0.224, off: 34.8 },
-      touchid: { fx: 0.8572, fy: 0.5922, t: 0.895, off: 26.6 },
-      trackpad: { fx: 0.4544, fy: 0.6625, t: 0.370, off: 0.3 },
-      battery: { fx: 0.5577, fy: 0.8443, t: 0.420, off: -0.2 },
-      body: { fx: 0.8514, fy: 0.6942 },
-      speaker: { fx: 0.8045, fy: 0.8488, t: 0.471, off: -17.7 }
+      display: { fx: 0.5877, fy: 0.1381 },
+      camera: { fx: 0.7166, fy: 0.1024 },
+      keyboard: { fx: 0.5569, fy: 0.3195 },
+      touchid: { fx: 0.83, fy: 0.4575 },
+      trackpad: { fx: 0.494, fy: 0.4855 },
+      battery: { fx: 0.566, fy: 0.7447 },
+      body: { fx: 0.8391, fy: 0.6149 },
+      speaker: { fx: 0.7772, fy: 0.7485 }
     };
     for (const [k, p] of parts) {
       if (k === 'vents') continue; // вентиляция выезжает, но без бирки
@@ -546,7 +557,6 @@ loader.load(assets.model, (gltf) => {
       hero.appendChild(el);
       const sp = (EDIT && savedLayout[k]) || FIXED[k] || {};
       if (sp.fx !== undefined) p.userPos = { fx: sp.fx, fy: sp.fy };
-      if (sp.t !== undefined) p.linePos = { t: sp.t, off: sp.off };
       if (EDIT) {
         el.addEventListener('pointerdown', e => {
           e.preventDefault(); e.stopPropagation();
@@ -590,38 +600,6 @@ loader.load(assets.model, (gltf) => {
       anchorNode.updateMatrixWorld(true);
       p.anchorNode = anchorNode;
       p.anchorLocal = anchorNode.worldToLocal(w.clone());
-      if (EDIT) {
-        const handle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        handle.setAttribute('r', '5');
-        handle.setAttribute('fill', '#ffb224');
-        handle.setAttribute('opacity', '0');
-        handle.style.cursor = 'grab';
-        handle.style.pointerEvents = 'auto';
-        leads.appendChild(handle);
-        handle.addEventListener('pointerdown', e => {
-          e.preventDefault(); e.stopPropagation();
-          try { handle.setPointerCapture(e.pointerId); } catch (_) {}
-          p.lineDrag = true; handle.style.cursor = 'grabbing';
-        });
-        handle.addEventListener('pointermove', e => {
-          if (!p.lineDrag || !p._A) return;
-          e.stopPropagation();
-          const r = hero.getBoundingClientRect();
-          const Px = e.clientX - r.left, Py = e.clientY - r.top;
-          const dx = p._B.x - p._A.x, dy = p._B.y - p._A.y;
-          const L2 = dx * dx + dy * dy;
-          if (L2 < 1) return;
-          const L = Math.sqrt(L2);
-          const t = Math.max(0.05, Math.min(0.95, ((Px - p._A.x) * dx + (Py - p._A.y) * dy) / L2));
-          const off = ((Px - p._A.x) * -dy + (Py - p._A.y) * dx) / L;
-          p.linePos = { t, off };
-        });
-        const endLine = () => { if (!p.lineDrag) return; p.lineDrag = false; handle.style.cursor = 'grab'; saveLayout(); };
-        handle.addEventListener('pointerup', endLine);
-        handle.addEventListener('pointercancel', endLine);
-        handle.addEventListener('dblclick', () => { p.linePos = null; saveLayout(); });
-        p.leadHandle = handle;
-      }
       p.calloutEl = el;
       p.leadLine = ln;
       p.leadDotA = dotA;
@@ -731,7 +709,7 @@ let openT = 0;
     ptr.x = (px / r.width) * 2 - 1;
     ptr.y = -(py / r.height) * 2 + 1;
     ray.setFromCamera(ptr, camera);
-    if (EDIT) return; // в режиме расстановки мак раскрыт постоянно
+    if (EDIT) return; // состоянием в правке управляет пробел, а не мышь
     const hitAny = zoneMeshes.length ? ray.intersectObjects(zoneMeshes).length > 0 : false;
     if (hitAny) { hoverKey = 'open'; openT = performance.now(); }
     // гистерезис на закрытие: короткий проскок мимо конверта не схлопывает
@@ -760,8 +738,15 @@ function resize() {
   // правая граница текстовой колонки — за неё бирки не заходят
   const copyEl = document.querySelector('.hero-copy');
   if (copyEl && w >= 1000) {
-    const cr = copyEl.getBoundingClientRect(), hr = hero.getBoundingClientRect();
-    textGuard = cr.right - hr.left + 28;
+    // граница по самому широкому потомку: строка «кнопка + цена» шире самого
+    // блока, и по его краю бирка вставала к ссылке вплотную
+    const hr = hero.getBoundingClientRect();
+    let right = copyEl.getBoundingClientRect().right;
+    for (const el of copyEl.querySelectorAll('*')) {
+      const r = el.getBoundingClientRect();
+      if (r.width && r.right > right) right = r.right;
+    }
+    textGuard = right - hr.left + 28;
   } else {
     textGuard = null;   // на узких экранах текст лежит поверх мака — упор не нужен
   }
@@ -782,7 +767,7 @@ const BREATH_LINK = { camera: 'display', speaker: 'battery', body: 'battery', to
 function frame(ms) {
   const tSec = ms * 0.001;
   for (const [k, p] of parts) {
-    if (EDIT) p.tgt = 1;
+    if (EDIT) p.tgt = editOpen ? 1 : 0;   // пробелом переключается разбор
     p.cur += (p.tgt - p.cur) * (prefersReduced ? 0.3 : (p.tgt > p.cur ? 0.07 : 0.1));
     const e = ease(Math.max(0, Math.min(1, p.cur)));
     const slot = BREATH_ORDER.indexOf(BREATH_LINK[k] || k);
@@ -814,7 +799,13 @@ function frame(ms) {
     // а текст стоит фиксированной шириной по центру страницы — чем шире окно,
     // тем ближе они сходятся. Ручная расстановка Юры при этом сохраняется:
     // упор срабатывает только там, где бирка реально дошла бы до текста.
-    if (textGuard !== null && bx < textGuard) bx = textGuard;
+    // левые бирки выравниваются по правому краю (CSS translate(-100%)), поэтому
+    // для них упор считаем с учётом собственной ширины — иначе блок уезжает
+    // на текст, хотя точка привязки формально правее границы
+    if (textGuard !== null) {
+      const minX = p.side === "L" ? textGuard + (p.cw || 150) : textGuard;
+      if (bx < minX) bx = minX;
+    }
     p.calloutEl.style.left = bx + 'px';
     p.calloutEl.style.top = ty + 'px';
     const vis = appear;   // бирки висят всегда, не только при наведении
@@ -823,13 +814,9 @@ function frame(ms) {
     const Ax = p.side === 'L' ? bx + 6 : bx - 6, Ay = ty;
     p._A = { x: Ax, y: Ay };
     p._B = { x: ax, y: ay };
-    let mx = (Ax + ax) / 2, my = (Ay + ay) / 2;
-    if (p.linePos) {
-      const dx = ax - Ax, dy = ay - Ay, L = Math.hypot(dx, dy) || 1;
-      mx = Ax + dx * p.linePos.t + (-dy / L) * p.linePos.off;
-      my = Ay + dy * p.linePos.t + (dx / L) * p.linePos.off;
-    }
-    p.leadLine.setAttribute('points', Ax.toFixed(1) + ',' + Ay.toFixed(1) + ' ' + mx.toFixed(1) + ',' + my.toFixed(1) + ' ' + ax.toFixed(1) + ',' + ay.toFixed(1));
+    // выноски прямые: излом убран по просьбе Юры 2026-08-16 — угол линии и так
+    // зависит от того, где сейчас деталь, а лишний узел только путал расстановку
+    p.leadLine.setAttribute('points', Ax.toFixed(1) + ',' + Ay.toFixed(1) + ' ' + ax.toFixed(1) + ',' + ay.toFixed(1));
     p.leadLine.setAttribute('stroke-opacity', (0.4 * vis).toFixed(2));
     p.leadDotA.setAttribute('cx', Ax.toFixed(1));
     p.leadDotA.setAttribute('cy', Ay.toFixed(1));
@@ -837,11 +824,6 @@ function frame(ms) {
     p.leadDot.setAttribute('cx', ax.toFixed(1));
     p.leadDot.setAttribute('cy', ay.toFixed(1));
     p.leadDot.setAttribute('opacity', (0.8 * vis).toFixed(2));
-    if (p.leadHandle) {
-      p.leadHandle.setAttribute('cx', mx.toFixed(1));
-      p.leadHandle.setAttribute('cy', my.toFixed(1));
-      p.leadHandle.setAttribute('opacity', (0.9 * vis).toFixed(2));
-    }
   }
 
   if (parts.size) appear = Math.min(1, appear + 0.015);
