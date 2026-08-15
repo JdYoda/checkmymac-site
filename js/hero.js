@@ -216,7 +216,6 @@ const root = new THREE.Group();
 scene.add(root);
 let rootBaseY = 0;
 let rootBaseX = null;  // база смещения по X; на широких экранах мак уводится правее текста
-let calloutShift = 0;  // тот же сдвиг для бирок, в пикселях — иначе они лезут на заголовок
 
 // логические детали: suffix узла →描述. Заполняется после диагностики.
 const PART_DEFS = PART_DEFS_DATA;
@@ -520,14 +519,14 @@ loader.load(assets.model, (gltf) => {
     // зафиксированная раскладка бирок и изломов линий (подобрана Юрой 2026-08-15):
     // fx/fy — позиция бирки в долях героя; t/off — излом линии (доля вдоль + перпендикуляр)
     const FIXED = {
-      display: { fx: 0.4290, fy: 0.3043, t: 0.225, off: 46.7 },
-      camera: { fx: 0.6236, fy: 0.2096, t: 0.538, off: 25.4 },
-      keyboard: { fx: 0.3955, fy: 0.4900, t: 0.315, off: 48.3 },
-      touchid: { fx: 0.7435, fy: 0.5690, t: 0.839, off: 33.3 },
-      trackpad: { fx: 0.3754, fy: 0.6332, t: 0.370, off: 0.3 },
-      battery: { fx: 0.3910, fy: 0.8519, t: 0.420, off: -0.2 },
-      body: { fx: 0.7166, fy: 0.7152 },
-      speaker: { fx: 0.6536, fy: 0.8518, t: 0.461, off: -15.6 }
+      display: { fx: 0.5254, fy: 0.3168, t: 0.225, off: 46.7 },
+      camera: { fx: 0.7417, fy: 0.1929, t: 0.253, off: 25.5 },
+      keyboard: { fx: 0.4959, fy: 0.5024, t: 0.258, off: 32.7 },
+      touchid: { fx: 0.8572, fy: 0.5922, t: 0.895, off: 26.6 },
+      trackpad: { fx: 0.4406, fy: 0.6456, t: 0.370, off: 0.3 },
+      battery: { fx: 0.5577, fy: 0.8443, t: 0.420, off: -0.2 },
+      body: { fx: 0.8514, fy: 0.6942 },
+      speaker: { fx: 0.8045, fy: 0.8488, t: 0.461, off: -15.6 }
     };
     for (const [k, p] of parts) {
       if (k === 'vents') continue; // вентиляция выезжает, но без бирки
