@@ -339,6 +339,7 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
   .spec tbody tr { border-bottom: 1px solid var(--rule-l); padding: 12px 0; }
   .spec tbody tr:first-child { border-top: 2px solid var(--ink); }
   .spec td { border-bottom: 0; padding: 2px 0; }
+  .spec tbody tr:first-child td { border-top: 0; }
   .spec td:first-child { width: auto; }
   .shots-grid, .tiers, .plans { grid-template-columns: 1fr; }
   .tear { height: 20px; }
