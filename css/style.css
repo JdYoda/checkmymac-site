@@ -260,7 +260,6 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 .spec tbody tr:first-child td { border-top: 2px solid var(--ink); }
 .spec td:first-child { font: 600 13px var(--font-m); color: var(--ink); white-space: nowrap; width: 130px; }
 .spec td:nth-child(2) { color: var(--body); font-size: 14.5px; }
-.spec td:last-child { font: 11px var(--font-m); color: var(--dim); white-space: nowrap; text-align: right; }
 .spec-note { margin-top: 18px; font: 11px var(--font-m); letter-spacing: .14em; color: var(--dim); }
 
 /* скриншоты — белые карточки-полароиды */
@@ -341,7 +340,6 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
   .spec tbody tr:first-child { border-top: 2px solid var(--ink); }
   .spec td { border-bottom: 0; padding: 2px 0; }
   .spec td:first-child { width: auto; }
-  .spec td:last-child { text-align: left; }
   .shots-grid, .tiers, .plans { grid-template-columns: 1fr; }
   .tear { height: 20px; }
 }
