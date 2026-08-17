@@ -232,6 +232,9 @@ img { max-width: 100%; }
 
 /* бирки-выноски 3D-героя */
 .callout { position: absolute; z-index: 11; pointer-events: none; font-family: var(--font-m); font-size: .68rem; letter-spacing: .06em; white-space: nowrap; color: var(--ink-on-coal); background: rgba(28, 25, 20, .92); border: 1px solid var(--rule-d); padding: .3em .65em; opacity: 0; }
+/* узкий кадр (съёмка мобильного постера): бирки не масштабируются вместе
+   с маком, на 375px восемь штук в полном кегле забивают весь кадр */
+.narrow-hero .callout { font-size: .5rem; letter-spacing: .04em; padding: .28em .5em; }
 .callout.L { transform: translate(-100%, -50%); }
 .callout.R { transform: translate(0, -50%); }
 .callout.on { pointer-events: auto; }
@@ -332,8 +335,23 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 }
 @media (max-width: 768px) {
   section { padding: 48px 0; }
-  .hero::after { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, transparent 10%, rgba(33, 31, 28, .86) 62%); pointer-events: none; }
-  .hero-copy { left: 20px; right: 20px; top: auto; bottom: 5%; }
+  /* На телефоне героя ведёт текст: 3D здесь не запускается, а картинка мака
+     под слоганом мешала читать — решение Юры 2026-08-17. Постер и вовсе не
+     качается (прозрачная заглушка в <picture>), градиент-подложка не нужна. */
+  .hero { height: auto; background: var(--coal); }
+  .hero::after { display: none; }
+  .hero-poster, #hero3d { display: none; }
+  /* Шапка на 375px не помещалась: логотип с названием, «EN» и кнопка
+     наезжали друг на друга. Кнопка в шапке дублирует главную в герое, а
+     шапка не липкая — на телефоне убираем её, бренд уменьшаем. */
+  .nav { padding: 16px 20px; }
+  .brand { font-size: 22px; gap: 10px; }
+  .brand img { width: 32px; height: 32px; border-radius: 7px; }
+  .nav-cta { display: none; }
+  .hero-copy { position: static; left: auto; right: auto; top: auto; bottom: auto; padding: 18px 20px 40px; max-width: none; }
+  .hero-copy h1 { font-size: clamp(30px, 8.6vw, 38px); }
+  .hero-copy .sub { margin-top: 18px; }
+  .hero-copy .cta-row { margin-top: 26px; }
   .spec thead { display: none; }
   .spec, .spec tbody, .spec tr, .spec td { display: block; width: 100%; }
   .spec tbody tr { border-bottom: 1px solid var(--rule-l); padding: 12px 0; }

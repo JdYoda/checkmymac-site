@@ -148,8 +148,12 @@ export function initHero({ container, assets }) {
     if (e.code === 'Space') { e.preventDefault(); editOpen = !editOpen; }
   });
   const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const desktop = matchMedia('(hover: hover) and (pointer: fine)').matches && innerWidth >= 1000;
-  if (!desktop || prefersReduced) return false;
+  // ?poster=1 — сцена запускается в любом окне, включая узкое. Нужно для
+  // съёмки мобильного постера: на телефоне 3D не грузится вовсе, посетитель
+  // видит только картинку, а снять её иначе не с чего.
+  const POSTER = new URLSearchParams(location.search).has('poster');
+  const desktop = POSTER || (matchMedia('(hover: hover) and (pointer: fine)').matches && innerWidth >= 1000);
+  if (!desktop || (prefersReduced && !POSTER)) return false;
 
   const canvas = document.createElement('canvas');
   canvas.setAttribute('aria-hidden', 'true');
@@ -729,6 +733,18 @@ function resize() {
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
+  // Узкий кадр — это съёмка мобильного постера (?poster=1): живая сцена на
+  // телефонах не запускается вовсе. Отодвигаем камеру, иначе мак не влезает
+  // по бокам, и опускаем подъём: на мобильной раскладке текст лежит внизу,
+  // маку нужен весь кадр, а не верхняя половина.
+  // Туман начинается с 30 единиц: отодвинутая камера утаскивает мак в дымку
+  // и он растворяется — проверено на z=41. Для узкого кадра туман сдвигаем.
+  const narrow = w < 700;
+  camera.position.set(narrow ? 1.2 : -2, (narrow ? 7.6 : 7.5) - (narrow ? 0 : LIFT), narrow ? 31 : 26);
+  camera.lookAt(0, narrow ? 0.6 : 2.8 - LIFT, 0);
+  scene.fog.near = narrow ? 42 : 30;
+  scene.fog.far = narrow ? 78 : 60;
+  hero.classList.toggle('narrow-hero', narrow);
   // на широких окнах уводим мак правее, чтобы он и его бирки не налезали
   // на заголовок слева; бирки живут в долях экрана — двигаем их отдельно
   const shift = Math.min(4.6, Math.max(0, (w / h - 1.2) * 6.2));
