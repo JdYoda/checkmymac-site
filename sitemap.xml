@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://checkmymac.yoda-service.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://checkmymac.yoda-service.com/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://checkmymac.yoda-service.com/ru/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://checkmymac.yoda-service.com/"/>
+    <loc>https://checkmymac.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://checkmymac.app/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://checkmymac.app/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://checkmymac.app/"/>
   </url>
   <url>
-    <loc>https://checkmymac.yoda-service.com/ru/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://checkmymac.yoda-service.com/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://checkmymac.yoda-service.com/ru/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://checkmymac.yoda-service.com/"/>
+    <loc>https://checkmymac.app/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://checkmymac.app/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://checkmymac.app/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://checkmymac.app/"/>
   </url>
-  <url><loc>https://checkmymac.yoda-service.com/terms.html</loc></url>
-  <url><loc>https://checkmymac.yoda-service.com/privacy.html</loc></url>
-  <url><loc>https://checkmymac.yoda-service.com/refunds.html</loc></url>
+  <url><loc>https://checkmymac.app/terms.html</loc></url>
+  <url><loc>https://checkmymac.app/privacy.html</loc></url>
+  <url><loc>https://checkmymac.app/refunds.html</loc></url>
 </urlset>
