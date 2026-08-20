@@ -8,6 +8,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://checkmymac.app/"/>
   </url>
   <url>
+    <loc>https://checkmymac.app/setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://checkmymac.app/setup.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://checkmymac.app/ru/setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://checkmymac.app/setup.html"/>
+  </url>
+  <url>
+    <loc>https://checkmymac.app/ru/setup.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://checkmymac.app/setup.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://checkmymac.app/ru/setup.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://checkmymac.app/setup.html"/>
+  </url>
+  <url>
     <loc>https://checkmymac.app/ru/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://checkmymac.app/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://checkmymac.app/ru/"/>
