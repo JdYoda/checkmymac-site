@@ -12,11 +12,12 @@
     ? { close: 'Закрыть', prev: 'Предыдущий скриншот', next: 'Следующий скриншот', open: 'Открыть скриншот крупно' }
     : { close: 'Close', prev: 'Previous screenshot', next: 'Next screenshot', open: 'Open screenshot larger' };
 
-  // Полная версия ищется по имени превью: img/web/als.png -> img/full/als.webp.
+  // Полная версия ищется по имени превью: img/web/als-700.webp -> img/full/als.webp.
+  // Хвост с размером обязателен к отбрасыванию: в img/full лежат файлы без него.
   // Так новый скриншот на странице подхватывается сам, без правки скрипта;
   // если полной версии нет, onerror ниже вернёт превью.
   function fullSrc(img) {
-    return img.src.replace('/img/web/', '/img/full/').replace(/\.(png|jpg|webp)$/, '.webp');
+    return img.src.replace('/img/web/', '/img/full/').replace(/(-\d+)?\.(png|jpg|webp)$/, '.webp');
   }
 
   var lb = document.createElement('div');

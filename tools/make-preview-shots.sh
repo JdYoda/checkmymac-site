@@ -16,7 +16,7 @@ command -v cwebp >/dev/null || { echo "Нужен cwebp: brew install webp"; exi
 
 # Исходники (img/shots) в репозиторий сайта не входят — они лежат только
 # у Юры локально. На чужой машине скрипт честно скажет, чего не хватает.
-NAMES=$(grep -oh 'img/web/[a-z-]*\.png' index.html ru/index.html | sed 's|img/web/||; s|\.png||' | sort -u)
+NAMES=$(grep -oh 'img/web/[a-z-]*-350\.webp' index.html ru/index.html | sed 's|img/web/||; s|-350\.webp||' | sort -u)
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT

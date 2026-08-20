@@ -1,7 +1,7 @@
 #!/bin/bash
 # Полноразмерные версии скриншотов для лайтбокса: img/shots/*.png -> img/full/*.webp
-# Имена сохраняются: превью img/web/als.png <-> полная img/full/als.webp,
-# по этому соответствию lightbox.js и находит картинку.
+# Имена сохраняются: превью img/web/als-350.webp <-> полная img/full/als.webp,
+# по этому соответствию lightbox.js и находит картинку (хвост размера отбрасывает).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -10,7 +10,7 @@ mkdir -p img/full
 
 # Собираем только то, что реально стоит на страницах — лишние файлы в репозиторий
 # не тащим. Список берём из разметки, чтобы он не разъезжался с сайтом.
-NAMES=$(grep -oh 'img/web/[a-z-]*\.png' index.html ru/index.html | sed 's|img/web/||; s|\.png||' | sort -u)
+NAMES=$(grep -oh 'img/web/[a-z-]*-350\.webp' index.html ru/index.html | sed 's|img/web/||; s|-350\.webp||' | sort -u)
 
 for n in $NAMES; do
   SRC="img/shots/$n.png"
