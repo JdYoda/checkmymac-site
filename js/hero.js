@@ -732,6 +732,7 @@ let openT = 0;
 
 function resize() {
   const w = hero.clientWidth, h = hero.clientHeight;
+  if (!w || !h) return;   // сцена спрятана — считать по нулям нечего, см. frame()
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
@@ -775,6 +776,11 @@ const BREATH_T = 16, BREATH_D = 8.8;
 const BREATH_LINK = { camera: 'display', speaker: 'battery', body: 'battery', touchid: 'keyboard', vents: 'keyboard' };
 
 function frame(ms) {
+  // Узкое окно прячет сцену (display: none в мобильной раскладке), и контейнер
+  // схлопывается в ноль. Дальше камера считала aspect как 0/0, проекция бирок
+  // давала NaN, и SVG каждый кадр ругался в консоль — а сцена всё это время
+  // ещё и рендерилась впустую в невидимый элемент. Ждём, пока вернут ширину.
+  if (!hero.clientWidth || !hero.clientHeight) { requestAnimationFrame(frame); return; }
   const tSec = ms * 0.001;
   for (const [k, p] of parts) {
     if (EDIT) p.tgt = editOpen ? 1 : 0;   // пробелом переключается разбор
