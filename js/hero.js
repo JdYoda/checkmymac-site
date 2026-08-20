@@ -157,7 +157,13 @@ export function initHero({ container, assets }) {
   const hero = container;
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+// Суперсэмплинг: на обычном мониторе (devicePixelRatio 1) сцена рисовалась
+// один-в-один с экраном, и все наклонные грани корпуса шли лесенкой — Юра
+// увидел это на внешнем мониторе Windows 2026-08-20. Рисуем вдвое крупнее
+// и отдаём браузеру ужимать. На Retina потолок прежний, там уже было 2.
+// Расплата — вчетверо больше пикселей на кадр; решение Юры: жёстко 2x, без
+// отката по FPS. Если у кого-то сцена начнёт дёргаться — откат вешать сюда.
+renderer.setPixelRatio(Math.min(devicePixelRatio * 2, 2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.1;
 renderer.shadowMap.enabled = true;

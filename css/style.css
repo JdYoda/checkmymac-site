@@ -330,9 +330,53 @@ h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 .legal p, .legal li { color: var(--body); font-size: 15px; margin-bottom: 12px; }
 .legal .foot { margin-top: 20px; }
 
+/* ── лайтбокс: скриншот в полный рост ───────────────────────────────── */
+/* В сетке скриншот живёт в 334 px и на обычном мониторе (одна физическая
+   точка на CSS-пиксель) мелкий текст интерфейса превращается в кашу.
+   По клику показываем исходник 2256–2940 px — он грузится только здесь. */
+.shots-grid figure { cursor: zoom-in; }
+.shots-grid figure:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+/* visibility скрывает оверлей от Tab, пока он закрыт. В переходе её держим
+   отдельной строкой: при открытии — мгновенно (иначе браузер переключает её
+   лишь к середине анимации, и фокус на ещё невидимую кнопку не встаёт),
+   при закрытии — с задержкой, чтобы дать исчезновению доиграть. */
+.lb { position: fixed; inset: 0; z-index: 100; background: rgba(33, 31, 28, .95);
+      display: flex; align-items: center; justify-content: center; padding: 56px 68px;
+      opacity: 0; visibility: hidden; transition: opacity .18s, visibility 0s .18s; }
+.lb.open { opacity: 1; visibility: visible; transition: opacity .18s, visibility 0s; }
+.lb figure { background: #fff; border: 1px solid var(--rule-l); padding: 12px 12px 14px;
+             display: flex; flex-direction: column; max-width: 100%; max-height: 100%; }
+/* Картинку зажимаем по высоте кадра за вычетом рамки и подписи, иначе
+   вертикальный отчёт вылезает за экран и подпись уезжает под сгиб. */
+.lb img { display: block; max-width: 100%; max-height: calc(100vh - 168px);
+          width: auto; height: auto; object-fit: contain; background: var(--paper-2); }
+/* Ширину рамки задаёт картинка, а не подпись: без width: 0 длинная строка
+   растягивает рамку шире снимка и поля становятся кривыми. */
+.lb figcaption { font: 10.5px var(--font-m); letter-spacing: .12em; color: var(--dim);
+                 padding-top: 12px; width: 0; min-width: 100%; }
+
+.lb-bar { position: absolute; top: 16px; right: 22px; display: flex; align-items: center; gap: 20px; }
+.lb-count { font: 12px var(--font-m); letter-spacing: .12em; color: var(--dim-on-coal); }
+.lb-btn { background: none; border: 0; padding: 8px; cursor: pointer; color: var(--dim-on-coal);
+          font: 300 30px/1 var(--font-d); transition: color .15s; }
+.lb-btn:hover, .lb-btn:focus-visible { color: var(--amber-hi); }
+.lb-btn:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
+.lb-close { font-size: 34px; }
+.lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 44px; }
+.lb-prev { left: 10px; }
+.lb-next { right: 10px; }
+
 /* ── мобильные ──────────────────────────────────────────────────────── */
 @media (max-width: 1000px) {
   .hero { height: clamp(420px, 64vh, 640px); }
+}
+@media (max-width: 620px) {
+  .lb { padding: 52px 10px; }
+  .lb img { max-height: calc(100vh - 156px); }
+  .lb-prev, .lb-next { font-size: 34px; top: auto; bottom: 8px; transform: none; }
+  .lb-prev { left: 20%; }
+  .lb-next { right: 20%; }
 }
 @media (max-width: 768px) {
   section { padding: 48px 0; }
