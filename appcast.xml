@@ -8,7 +8,7 @@
             <sparkle:version>10527</sparkle:version>
             <sparkle:shortVersionString>1.5.27</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/JdYoda/checkmymac-site/releases/download/v1.5.27/CheckMyMacPro-1.5.27.dmg" length="9307909" type="application/octet-stream" sparkle:edSignature="o0kvX4f/1nqk3RfN5Cdz58WZvvrzzsMv786Qfvc2KPUyB4tU5OezyxdNvDOdVkn/uJuX2L8Dx6voyGjNDah2Aw=="/>
+            <enclosure url="https://github.com/JdYoda/checkmymac-site/releases/download/v1.5.27/CheckMyMacPro-1.5.27.dmg" length="9391037" type="application/octet-stream" sparkle:edSignature="PElp+uUHVIFtCFsOAr7bimjE9Mok76nlsUHpAAzUzM7lGFyNgHzj1cymjOYcVaor7jkIbTEqA/6raiVMRODHDA=="/>
         </item>
         <item>
             <title>1.5.26</title>
