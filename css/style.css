@@ -324,6 +324,10 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
 .plan .buy { margin-top: auto; display: block; text-align: center; }
 .btn-ghost { display: block; text-align: center; background: transparent; border: 1.5px solid var(--ink); color: var(--ink); font: 700 15px var(--font-d); padding: 13px 26px; border-radius: 9px; text-decoration: none; }
 .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+/* Акцент Free: ярко-зелёная цена и кнопка, чтобы ловили глаз (Юра, 2026-10-25) */
+.plan.free .price { color: #2e9e4f; }
+.plan.free .btn-ghost { background: linear-gradient(180deg, #3bbd5f, #2e9e4f); border-color: #2e9e4f; color: #fff; }
+.plan.free .btn-ghost:hover { background: linear-gradient(180deg, #3bbd5f, #2e9e4f); color: #fff; filter: brightness(1.06); }
 .soon { display: inline-block; margin-top: 16px; font: 600 11px var(--font-m); letter-spacing: .12em; color: var(--dim); border: 1px dashed var(--rule-l); padding: 9px 16px; }
 .pricing-note { margin-top: 22px; color: var(--body); font-size: 14px; max-width: 720px; }
 .pricing-note a { color: var(--amber-deep); }
