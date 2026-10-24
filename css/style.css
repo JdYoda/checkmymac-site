@@ -269,8 +269,10 @@ img { max-width: 100%; }
 section { padding: 84px 0; }
 h2 { font: 700 clamp(26px, 3vw, 38px)/1.15 var(--font-d); margin-bottom: 8px; }
 /* Заголовки секций по центру и с воздухом сверху и снизу (Юра, 2026-10-25):
-   раньше h2 лип к таблице и рамкам. Верхний воздух даёт padding секции. */
-main section > h2 { text-align: center; margin: 0 0 44px; }
+   раньше h2 лип к таблице и рамкам. У section.wrap вертикального padding нет
+   (.wrap его обнуляет), поэтому воздух сверху задаёт сам заголовок. */
+main section > h2 { text-align: center; margin: 72px 0 44px; }
+@media (max-width: 768px) { main section > h2 { margin: 48px 0 28px; } }
 .sec-sub { font: 12px var(--font-m); letter-spacing: .16em; color: var(--amber-deep); text-transform: uppercase; margin-bottom: 34px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .stamp { display: inline-block; font: 700 11px var(--font-m); letter-spacing: .1em; color: var(--good); border: 2px solid var(--good); border-radius: 4px; padding: 2px 8px; transform: rotate(-3deg); opacity: .85; }
 
