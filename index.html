@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CheckMyMac — full MacBook diagnostics before you buy, sell or repair</title>
-<meta name="description" content="30+ hardware checks in one app: battery, ports, sensors, Touch ID, SSD, stress tests — and a one-page PDF report. Free version included. Built by a Mac repair shop. macOS 10.15+, Intel & Apple Silicon, notarized by Apple.">
+<meta name="description" content="30+ hardware checks for a MacBook: battery, ports, sensors, Touch ID, SSD, stress tests. A PDF report at the end. Free version included. Built by a Mac repair shop. macOS 10.15+, Intel and Apple Silicon.">
 <link rel="canonical" href="https://checkmymac.app/">
 <link rel="alternate" hreflang="en" href="https://checkmymac.app/">
 <link rel="alternate" hreflang="ru" href="https://checkmymac.app/ru/">
@@ -14,13 +14,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CheckMyMac">
 <meta property="og:title" content="CheckMyMac — full MacBook diagnostics before you buy, sell or repair">
-<meta property="og:description" content="30+ hardware checks in one app — and a one-page PDF report. Free version included. Built by a Mac repair shop.">
+<meta property="og:description" content="30+ hardware checks for a MacBook and a PDF report at the end. Free version included. Built by a Mac repair shop.">
 <meta property="og:url" content="https://checkmymac.app/">
 <meta property="og:image" content="https://checkmymac.app/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono-latin.woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=20261025k">
+<link rel="stylesheet" href="css/style.css?v=20261025l">
 </head>
 <body>
 
@@ -43,7 +43,7 @@
     </picture>
     <div class="hero-copy">
       <h1 class="hero-pitch">Buying, selling or repairing a MacBook? With CheckMyMac it all goes <b>without surprises.</b></h1>
-      <p class="hero-stat"><b>30+</b>hardware checks — every hidden defect has nowhere to hide.</p>
+      <p class="hero-stat"><b>30+</b>hardware checks. At the end, a PDF report with a verdict on every item.</p>
       <div class="cta-row">
         <a class="btn-primary" href="https://github.com/JdYoda/checkmymac-site/releases/latest/download/CheckMyMacPro-1.5.45.dmg">Download free for macOS</a>
         <a class="link-cta" href="#pricing">See pricing — from $12 →</a>
@@ -56,97 +56,98 @@
 
 <main>
   <section id="features" class="wrap">
-    <h2>The full service-bench inspection, in one app</h2>
+    <h2>What the app checks</h2>
     <table class="spec">
       <thead><tr><th scope="col">System</th><th scope="col">What's tested</th></tr></thead>
       <tbody>
-        <tr><td>BATTERY</td><td>Cycle count, real capacity, condition and charging health on both USB-C and MagSafe.</td></tr>
-        <tr><td>PORTS</td><td>Every USB-C and USB-A port tested live: plug anything in and watch the port light up. Dead and unstable ports have nowhere to hide.</td></tr>
-        <tr><td>SENSORS</td><td>Temperatures, fans, ambient light, lid angle, sleep sensor — read straight from the hardware, with anomalies highlighted.</td></tr>
-        <tr><td>TOUCH ID</td><td>Live sensor test that counts every finger touch — works even on a freshly wiped Mac with no fingerprints enrolled.</td></tr>
-        <tr><td>SSD</td><td>Full SMART health — wear, reallocated blocks, terabytes written — plus an honest speed test that writes past the cache.</td></tr>
-        <tr><td>AUDIO</td><td>Left and right speakers tested in isolation, sweep and music, with a live readout of where the sound is actually going.</td></tr>
-        <tr><td>STRESS</td><td>CPU and GPU stress runs with a live throttling graph. A Mac that overheats under load reveals itself in minutes.</td></tr>
-        <tr><td>REPORT</td><td>A clean PDF verdict for every check — plus before/after comparison for repair shops, tied to a work order number.</td></tr>
+        <tr><td>MAC PASSPORT</td><td>Model, serial number, country of sale and manufacture, build date. A "Check Apple warranty" button, plus flags when the Mac has Activation Lock or mobile device management on.</td></tr>
+        <tr><td>BATTERY</td><td>Cycle count, real capacity and battery condition. Charging is checked separately, over USB-C and MagSafe.</td></tr>
+        <tr><td>PORTS</td><td>Ports are checked one by one. Plug in a cable or a drive and the matching port lights up on the Mac diagram. If a port doesn't respond, or drops when you wiggle the plug, you see it right away.</td></tr>
+        <tr><td>SENSORS</td><td>Temperatures, fans, ambient light sensor, lid angle, sleep sensor. Readings come straight from the hardware, and anything off is highlighted.</td></tr>
+        <tr><td>TOUCH ID</td><td>The app counts touches on the sensor. It needs no enrolled fingerprints, so the test works on a wiped Mac too.</td></tr>
+        <tr><td>SSD</td><td>Drive SMART: wear, reallocated blocks, terabytes written. Then a speed test: the app writes a 5 GB file and reads it back, so the cache doesn't skew the result.</td></tr>
+        <tr><td>AUDIO</td><td>Left and right speaker separately, a frequency sweep and music. The app shows where sound goes right now: speakers, headphones or an external device. The microphone is checked with a recording up to a minute, played back.</td></tr>
+        <tr><td>STRESS</td><td>The app loads the CPU or GPU for a set time and draws one graph with two lines: performance and temperature. If performance drops under load, the graph shows it.</td></tr>
+        <tr><td>REPORT</td><td>A PDF with a verdict on every item. In the Service version: work order number, client name, and a comparison of the before and after-repair checks.</td></tr>
       </tbody>
     </table>
-    <p class="spec-note">CHECKLIST OF 30+ ITEMS · ADAPTS AUTOMATICALLY TO 70+ MACBOOK MODELS</p>
+    <p class="spec-note">A CHECKLIST OF 30+ ITEMS · BUILT FOR THE MODEL, 70+ MACBOOKS IN THE DATABASE</p>
   </section>
 
   <section class="wrap">
-    <h2>Inside the app</h2>
+    <h2>How it looks</h2>
     <div class="shots-grid">
       <figure class="tall">
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/report-pdf-350.webp 350w, img/web/report-pdf-700.webp 700w, img/web/report-pdf.webp 918w">
           <img src="img/web/report-pdf-700.webp" alt="One-page PDF diagnostic report with verdicts, telemetry and engineer's notes" loading="lazy" width="918" height="1300">
         </picture>
-        <figcaption>ONE-PAGE PDF PASSPORT — VERDICTS, TELEMETRY, ENGINEER'S NOTES</figcaption>
+        <figcaption>PDF REPORT: A VERDICT ON EVERY ITEM, HARDWARE READINGS, ENGINEER'S NOTES</figcaption>
       </figure>
       <figure>
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/keyboard-test-350.webp 350w, img/web/keyboard-test-700.webp 700w, img/web/keyboard-test.webp 1400w">
           <img src="img/web/keyboard-test-700.webp" alt="Full-screen keyboard test with pressed keys lighting up green" loading="lazy" width="1400" height="909">
         </picture>
-        <figcaption>FULL-SCREEN KEY TEST — A DEAD KEY WON'T REACT</figcaption>
+        <figcaption>FULL-SCREEN KEYBOARD TEST: PRESSED KEYS FILL IN</figcaption>
       </figure>
       <figure>
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/trackpad-test-350.webp 350w, img/web/trackpad-test-700.webp 700w, img/web/trackpad-test.webp 1400w">
           <img src="img/web/trackpad-test-700.webp" alt="Trackpad coverage test painting visited zones, with Force Touch pressure bar" loading="lazy" width="1400" height="910">
         </picture>
-        <figcaption>TRACKPAD COVERAGE BRUSH · CLICKS · FORCE TOUCH</figcaption>
+        <figcaption>TRACKPAD: PAINT IT WITH YOUR FINGER, CLICKS, FORCE TOUCH</figcaption>
       </figure>
       <figure>
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/stress-cpu-350.webp 350w, img/web/stress-cpu-700.webp 700w, img/web/stress-cpu.webp 1400w">
           <img src="img/web/stress-cpu-700.webp" alt="CPU stress test with live performance and temperature graphs and a throttling verdict" loading="lazy" width="1400" height="834">
         </picture>
-        <figcaption>CPU STRESS — LIVE GRAPH CATCHES THROTTLING</figcaption>
+        <figcaption>STRESS TEST: PERFORMANCE AND TEMPERATURE ON ONE GRAPH</figcaption>
       </figure>
       <figure>
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/ssd-350.webp 350w, img/web/ssd-700.webp 700w, img/web/ssd.webp 1400w">
           <img src="img/web/ssd-700.webp" alt="SSD panel with SMART health data and measured write and read speed" loading="lazy" width="1400" height="996">
         </picture>
-        <figcaption>SSD SMART + HONEST SPEED TEST PAST THE CACHE</figcaption>
+        <figcaption>SSD: SMART AND A 5 GB FILE SPEED TEST</figcaption>
       </figure>
       <figure>
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/touchid-350.webp 350w, img/web/touchid-700.webp 700w, img/web/touchid.webp 1400w">
           <img src="img/web/touchid-700.webp" alt="Live Touch ID sensor test counting touches without enrolled fingerprints" loading="lazy" width="1400" height="848">
         </picture>
-        <figcaption>TOUCH ID SENSOR, TESTED LIVE — NO ENROLLMENT NEEDED</figcaption>
+        <figcaption>TOUCH ID: SENSOR TOUCH COUNTER, NO FINGERPRINTS NEEDED</figcaption>
       </figure>
           <figure>
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/charging-350.webp 350w, img/web/charging-700.webp 700w, img/web/charging.webp 1400w">
           <img src="img/web/charging-700.webp" alt="Charging panel showing the connected adapter, its wattage and which USB-C port carries the power" loading="lazy" width="1400" height="848">
         </picture>
-        <figcaption>CHARGING — ADAPTER WATTAGE AND THE EXACT PORT IN USE</figcaption>
+        <figcaption>CHARGING: ADAPTER WATTAGE AND THE PORT POWER COMES THROUGH</figcaption>
       </figure>
       <figure>
         <picture>
           <source type="image/webp" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1228px) calc((100vw - 172px) / 3), 336px" srcset="img/web/als-350.webp 350w, img/web/als-700.webp 700w, img/web/als.webp 1400w">
           <img src="img/web/als-700.webp" alt="Ambient light sensor test with a live lux reading and the matching screen brightness bar" loading="lazy" width="1400" height="848">
         </picture>
-        <figcaption>AMBIENT LIGHT SENSOR — LIVE LUX, BRIGHTNESS FOLLOWS</figcaption>
+        <figcaption>AMBIENT LIGHT SENSOR: LUX AND SCREEN BRIGHTNESS</figcaption>
       </figure>
 </div>
   </section>
 
   <section class="wrap">
-    <h2>Ten minutes from download to verdict</h2>
+    <h2>How a check works</h2>
     <ol class="steps">
-      <li><b>Run it.</b> No installation — download, open, and the app identifies the exact MacBook model and builds its checklist.</li>
-      <li><b>Walk the checklist.</b> Automatic probes read the hardware; guided tests walk you through screen, sound, keyboard and sensors.</li>
-      <li><b>Get the verdict.</b> Every check ends in a clear OK or a named defect — exported as a PDF you can send or print.</li>
+      <li><b>Open the app.</b> No installation. It detects the Mac model and builds the checklist for it.</li>
+      <li><b>Go through the tests top to bottom.</b> The app runs some on its own; for the rest it shows what to press and where to look: screen, sound, keyboard, sensors.</li>
+      <li><b>Save the report.</b> Press "Finish test / Report". In the PDF, each item shows OK or the name of the defect.</li>
     </ol>
   </section>
 
   <section id="download" class="wrap dl">
-    <h2>Download it now. Test a Mac in the next ten minutes.</h2>
-    <p class="dl-sub">The free version is free forever: 19 checks open forever, no account, no trial countdown. The full version unlocks every test and the PDF report.</p>
+    <h2>Download the app</h2>
+    <p class="dl-sub">The free version never expires: 19 checks open, no account, no trial period. The full version unlocks every test and the PDF report.</p>
     <div class="cta-row">
       <a class="btn-primary" href="https://github.com/JdYoda/checkmymac-site/releases/latest/download/CheckMyMacPro-1.5.45.dmg">Download for macOS — free</a>
       <span class="dl-meta"><span class="dl-ver">v1.5.45 · 9 MB DMG</span> · MACOS 10.15+ · INTEL &amp; APPLE SILICON · NOTARIZED</span>
@@ -216,7 +217,7 @@
   </section>
 
   <section id="faq" class="wrap faq">
-    <h2>Fair questions</h2>
+    <h2>Questions</h2>
     <details><summary>What's in the free version?</summary><p>19 checks are open forever: the live port probe, display, keyboard, trackpad with Force Touch, Touch ID, camera, microphone, Wi-Fi, Bluetooth, charging and more. The full version unlocks battery, SSD, speakers, stress tests, the remaining sensors and the PDF report. No trial clock — the free checks never expire.</p></details>
     <details><summary>How many Macs can I check with one Personal key?</summary><p>Two Macs are included — typically your own and the one you're buying. Each Mac keeps its slot forever, so re-checking the same machine is always free. Need to check another Mac later? Add a slot from inside the app in two clicks; the store shows the price and payment links to your key automatically. Repair shops that check Macs daily should look at Service — unlimited Macs from a USB stick.</p></details>
     <details><summary>Is it safe to run on a Mac I don't own yet?</summary><p>Yes. The app is notarized by Apple, changes nothing on the machine, writes no fingerprints, installs no drivers and needs no internet. It reads hardware state and shows it to you.</p></details>
@@ -233,7 +234,7 @@
 <footer class="foot">
   <div class="wrap colophon">
     CheckMyMac — an independent app, built on the workflow of a large Apple repair service.<br>
-    It grew out of the checklist that bench runs on every incoming MacBook.<br>
+    It grew out of the checklist the bench runs on every incoming MacBook.<br>
     <a href="mailto:yukkaperehenen@gmail.com">yukkaperehenen@gmail.com</a> · <a href="setup.html">Setup guide</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="refunds.html">Refunds</a> · © 2026
   </div>
 </footer>
