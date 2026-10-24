@@ -197,6 +197,11 @@ img { max-width: 100%; }
 .brand { display: inline-flex; align-items: center; gap: 13px; font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); text-decoration: none; }
 .brand img { width: 40px; height: 40px; border-radius: 9px; display: block; }
 .nav-right { display: flex; align-items: center; gap: 18px; }
+/* Слоган уехал в шапку рядом с брендом, тем же кеглем (Юра, 2026-10-25) */
+.nav-left { display: flex; align-items: center; gap: 16px; }
+.brand-slogan { font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); border-left: 1px solid var(--rule-d); padding-left: 16px; white-space: nowrap; }
+.brand-slogan b { color: var(--amber-hi); font-weight: 700; }
+@media (max-width: 1040px) { .brand-slogan { display: none; } }
 .lang { font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--dim-on-coal); text-decoration: none; }
 .lang:hover { color: var(--ink-on-coal); }
 .nav-cta { font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--ink-on-coal); text-decoration: none; border: 1px solid var(--rule-d); padding: 10px 18px; }
@@ -215,14 +220,14 @@ img { max-width: 100%; }
    постер остаётся под живой сценой и бирки двоятся — поймано 2026-08-17. */
 #hero3d.live ~ .hero-poster,
 #hero3d.live ~ picture .hero-poster { opacity: 0; }
-.hero-copy { position: absolute; left: 24px; top: 8%; max-width: 470px; z-index: 3; pointer-events: none; }
+.hero-copy { position: absolute; left: 24px; top: 8%; max-width: 500px; z-index: 3; pointer-events: none; }
 .hero-copy > * { pointer-events: auto; }
 @media (min-width: 1240px) {
   .hero-copy { left: calc(50vw - 590px); }
   .nav { padding-left: 0; padding-right: 0; }
 }
 .hero-copy h1 { font: 700 clamp(32px, 4.3vw, 53px)/1.06 var(--font-d); }
-@media (min-width: 1000px) { .hero-copy h1, .hero-note { white-space: nowrap; } }
+@media (min-width: 1000px) { .hero-note { white-space: nowrap; } }
 /* Низкие окна (до 780px): герой 80vh, текст с воздухом не влезал — ужимаем отступы. */
 @media (min-width: 769px) and (max-height: 780px) {
   .hero-copy { top: 5%; }
@@ -233,6 +238,9 @@ img { max-width: 100%; }
   .hero-note { margin-top: 14px; }
 }
 .hero-copy h1 span { color: var(--amber-hi); }
+/* Заголовок-питч в геро: спокойнее и мельче прежнего слогана (Юра, 2026-10-25) */
+.hero-pitch { font: 700 clamp(21px, 2.3vw, 29px)/1.2 var(--font-d); color: var(--ink-on-coal); }
+.hero-pitch b { color: var(--amber-hi); font-weight: 700; }
 /* строка под слоганом: цифра-якорь «30+» и фраза со старого лендинга */
 /* Иерархия первого экрана (Юра, 2026-10-25, вариант «два абзаца»): строка «30+»
    светлее и крупнее, абзацы мельче и уже, между блоками воздух 22–28px,
