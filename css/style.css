@@ -199,7 +199,7 @@ img { max-width: 100%; }
 .nav-right { display: flex; align-items: center; gap: 18px; }
 /* Слоган уехал в шапку рядом с брендом, тем же кеглем (Юра, 2026-10-25) */
 .nav-left { display: flex; align-items: center; gap: 16px; }
-.brand-slogan { font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); border-left: 1px solid var(--rule-d); padding-left: 16px; white-space: nowrap; }
+.brand-slogan { font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); white-space: nowrap; }
 .brand-slogan b { color: var(--amber-hi); font-weight: 700; }
 @media (max-width: 1040px) { .brand-slogan { display: none; } }
 .lang { font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--dim-on-coal); text-decoration: none; }
