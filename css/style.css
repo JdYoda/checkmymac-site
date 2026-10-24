@@ -239,7 +239,7 @@ img { max-width: 100%; }
 }
 .hero-copy h1 span { color: var(--amber-hi); }
 /* Заголовок-питч в геро: спокойнее и мельче прежнего слогана (Юра, 2026-10-25) */
-.hero-pitch { font: 700 clamp(20px, 2.05vw, 26px)/1.22 var(--font-d); color: var(--ink-on-coal); }
+.hero-pitch { font: 700 clamp(18px, 1.7vw, 22px)/1.25 var(--font-d); color: var(--ink-on-coal); }
 .hero-pitch b { color: var(--amber-hi); font-weight: 700; }
 /* строка под слоганом: цифра-якорь «30+» и фраза со старого лендинга */
 /* Иерархия первого экрана (Юра, 2026-10-25, вариант «два абзаца»): строка «30+»
