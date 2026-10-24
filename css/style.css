@@ -296,7 +296,7 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
 .shots-grid figcaption { font: 10.5px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-top: auto; padding-top: 12px; }
 
 /* шаги — номера-кружки */
-.steps { counter-reset: st; max-width: 720px; list-style: none; }
+.steps { counter-reset: st; max-width: 720px; list-style: none; margin: 0 auto; }
 .steps li { padding: 22px 0 22px 64px; position: relative; counter-increment: st; border-bottom: 1px solid var(--rule-l); }
 .steps li::before { content: "0" counter(st); position: absolute; left: 0; top: 22px; font: 700 15px var(--font-m); color: var(--paper); background: var(--ink); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
 .steps b { font-size: 18px; }
