@@ -239,13 +239,13 @@ img { max-width: 100%; }
 }
 .hero-copy h1 span { color: var(--amber-hi); }
 /* Заголовок-питч в геро: спокойнее и мельче прежнего слогана (Юра, 2026-10-25) */
-.hero-copy h1.hero-pitch { font: 700 clamp(25px, 2.5vw, 33px)/1.2 var(--font-d); color: var(--ink-on-coal); }
+.hero-copy h1.hero-pitch { font: 700 clamp(27px, 2.7vw, 36px)/1.2 var(--font-d); color: var(--ink-on-coal); }
 .hero-pitch b { color: var(--amber-hi); font-weight: 700; }
 /* строка под слоганом: цифра-якорь «30+» и фраза со старого лендинга */
 /* Иерархия первого экрана (Юра, 2026-10-25, вариант «два абзаца»): строка «30+»
    светлее и крупнее, абзацы мельче и уже, между блоками воздух 22–28px,
    чтобы текст не сливался и не подлезал под мак справа. */
-.hero-stat { color: var(--ink-on-coal); margin: 24px 0 0; max-width: 24ch; font: 500 clamp(16px, 1.5vw, 19px)/1.4 var(--font-d); }
+.hero-stat { color: var(--ink-on-coal); margin: 48px 0 0; max-width: 24ch; font: 500 clamp(16px, 1.5vw, 19px)/1.4 var(--font-d); }
 .hero-stat b { font: 700 clamp(34px, 3.4vw, 44px)/1 var(--font-d); color: var(--amber); vertical-align: -5px; margin-right: 12px; }
 .hero-copy .sub { color: var(--dim-on-coal); margin-top: 22px; max-width: 390px; font-size: 14px; line-height: 1.6; }
 .hero-copy .sub + .sub { margin-top: 12px; }
