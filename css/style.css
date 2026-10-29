@@ -202,8 +202,13 @@ img { max-width: 100%; }
 .brand-slogan { font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); white-space: nowrap; }
 .brand-slogan b { color: var(--amber-hi); font-weight: 700; }
 @media (max-width: 1040px) { .brand-slogan { display: none; } }
-.lang { font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--dim-on-coal); text-decoration: none; }
-.lang:hover { color: var(--ink-on-coal); }
+/* Переключатель языка (Юра, 2026-10-29): подпись «Language» / «Язык», код языка
+   и флаг в тонкой рамке — иначе ссылку в шапке не замечали. */
+.lang-switch { display: inline-flex; align-items: center; gap: 10px; }
+.lang-label { font: 500 11px var(--font-m); letter-spacing: .14em; text-transform: uppercase; color: var(--faint-on-coal); }
+.lang { display: inline-flex; align-items: center; gap: 8px; font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--dim-on-coal); text-decoration: none; border: 1px solid rgba(236, 231, 220, .22); border-radius: 3px; padding: 5px 9px 5px 10px; }
+.lang:hover { color: var(--ink-on-coal); border-color: rgba(236, 231, 220, .45); }
+.lang svg { width: 18px; height: 12px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0, 0, 0, .4); display: block; }
 .nav-cta { font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--ink-on-coal); text-decoration: none; border: 1px solid var(--rule-d); padding: 10px 18px; }
 .nav-cta:hover { border-color: var(--amber); }
 
