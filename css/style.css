@@ -294,33 +294,23 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
 .spec-note { margin-top: 18px; font: 11px var(--font-m); letter-spacing: .14em; color: var(--dim); }
 
 /* скриншоты — белые карточки-полароиды */
-/* PDF-отчёт слева целиком на два ряда, остальные кадры — карточками 16:10
-   справа и под ним; карточки одной высоты, подписи по одной линии */
-.shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+/* Бенто 4×3 (2026-10-29): лист PDF-отчёта целиком занимает 2×2 и задаёт высоту
+   двух верхних рядов, восемь окон программы вокруг в формате самого окна
+   (1916×1772); нижний ряд своей высоты. Картинки по языкам: img/web/ru, img/web/en. */
+.shots-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .shots-grid figure { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 12px 12px 14px; display: flex; flex-direction: column; }
-.shots-grid img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; display: block; background: #fff; }
-.shots-grid figure.tall { grid-row: span 2; }
-.shots-grid figure.tall img { aspect-ratio: auto; object-fit: contain; }
-.shots-grid figcaption { font: 10.5px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-top: auto; padding-top: 12px; }
-/* Бенто 4×3 (русская страница, 2026-10-29): лист PDF занимает 2×2, восемь окон
-   программы вокруг в формате самого окна (1916×1772). Английская страница
-   остаётся на правилах выше, пока нет английских скриншотов. */
-.shots-grid.bento { grid-template-columns: repeat(4, 1fr); gap: 22px; }
-.shots-grid.bento img { aspect-ratio: 1916 / 1772; }
-.shots-grid.bento figure.tall { grid-column: span 2; grid-row: span 2; }
-/* Лист показан целиком и задаёт высоту рядов (решение Юры 2026-10-29: урезанный
-   лист выглядит куцым); нижний ряд без растяжки, своей высоты. */
-.shots-grid.bento figure.tall picture { flex: 1; display: flex; min-height: 0; }
-.shots-grid.bento figure.tall img { aspect-ratio: auto; height: 100%; object-fit: cover; object-position: center top; }
-.shots-grid.bento figcaption { font-size: 10px; }
+.shots-grid img { width: 100%; height: auto; aspect-ratio: 1916 / 1772; object-fit: cover; object-position: center top; display: block; background: #fff; }
+.shots-grid figure.tall { grid-column: span 2; grid-row: span 2; }
+.shots-grid figure.tall picture { flex: 1; display: flex; min-height: 0; }
+.shots-grid figure.tall img { aspect-ratio: auto; height: 100%; object-fit: cover; object-position: center top; }
+.shots-grid figcaption { font: 10px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-top: auto; padding-top: 12px; }
 @media (max-width: 1000px) {
-  .shots-grid.bento { grid-template-columns: repeat(2, 1fr); }
-  .shots-grid.bento figure.tall { grid-row: auto; }
-  .shots-grid.bento figure.tall img { height: auto; aspect-ratio: auto; object-fit: contain; }
+  .shots-grid { grid-template-columns: repeat(2, 1fr); }
+  .shots-grid figure.tall { grid-row: auto; }
+  .shots-grid figure.tall img { height: auto; aspect-ratio: auto; object-fit: contain; }
 }
 @media (max-width: 768px) {
-  .shots-grid.bento { grid-template-columns: 1fr; }
-  .shots-grid.bento figure.tall { grid-column: auto; }
+  .shots-grid figure.tall { grid-column: auto; }
 }
 
 /* шаги — номера-кружки */
