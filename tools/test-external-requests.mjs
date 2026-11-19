@@ -7,9 +7,18 @@
 // three.js для 3D-героя. Чужие запросы обрываются, в сеть ничего не уходит.
 // Заодно проверяется, что заголовок набран своим шрифтом, а не запасным.
 
-import { openSite, sleep } from './lib/site-browser.mjs';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { ROOT, openSite, sleep } from './lib/site-browser.mjs';
 
 const MAIN = ['gc.zgo.at', 'checkmymac.goatcounter.com', 'cdn.jsdelivr.net'];
+
+// Под каким именем каждый чужой сервер назван в privacy.html
+const DISCLOSED_AS = {
+  'gc.zgo.at': 'GoatCounter',
+  'checkmymac.goatcounter.com': 'GoatCounter',
+  'cdn.jsdelivr.net': 'jsDelivr',
+};
 
 const PAGES = [
   { page: '/', allowed: MAIN, cyrillic: false },
@@ -65,6 +74,13 @@ async function main() {
     }
   } finally {
     await site.close();
+  }
+
+  const privacy = readFileSync(path.join(ROOT, 'privacy.html'), 'utf8');
+  for (const host of new Set(PAGES.flatMap((p) => p.allowed))) {
+    const name = DISCLOSED_AS[host];
+    if (!name) failures.push(`${host}: разрешён в тесте, но не указано, как он назван в privacy.html`);
+    else if (!privacy.includes(name)) failures.push(`privacy.html не упоминает ${name}, хотя страницы обращаются к ${host}`);
   }
 
   if (failures.length) {
