@@ -193,10 +193,10 @@ img { max-width: 100%; }
 
 /* ── тёмная зона-прибор ─────────────────────────────────────────────── */
 .device { background: var(--coal); color: var(--ink-on-coal); }
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 24px; position: relative; z-index: 20; }
-.brand { display: inline-flex; align-items: center; gap: 13px; font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); text-decoration: none; }
-.brand img { width: 40px; height: 40px; border-radius: 9px; display: block; }
-.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 24px; position: relative; z-index: 20; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); text-decoration: none; }
+.brand img { width: 40px; height: 40px; border-radius: 8px; display: block; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
 /* Слоган уехал в шапку рядом с брендом, тем же кеглем (Юра, 2026-10-25) */
 .nav-left { display: flex; align-items: center; gap: 16px; }
 .brand-slogan { font: 700 clamp(26px, 2.6vw, 38px) var(--font-d); color: var(--ink-on-coal); white-space: nowrap; }
@@ -204,12 +204,12 @@ img { max-width: 100%; }
 @media (max-width: 1040px) { .brand-slogan { display: none; } }
 /* Переключатель языка (Юра, 2026-10-29): подпись «Language» / «Язык», код языка
    и флаг в тонкой рамке — иначе ссылку в шапке не замечали. */
-.lang-switch { display: inline-flex; align-items: center; gap: 10px; }
-.lang-label { font: 500 11px var(--font-m); letter-spacing: .14em; text-transform: uppercase; color: var(--faint-on-coal); }
-.lang { display: inline-flex; align-items: center; gap: 8px; font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--dim-on-coal); text-decoration: none; border: 1px solid rgba(236, 231, 220, .22); border-radius: 3px; padding: 5px 9px 5px 10px; }
+.lang-switch { display: inline-flex; align-items: center; gap: 8px; }
+.lang-label { font: 400 12px var(--font-m); letter-spacing: .08em; text-transform: uppercase; color: var(--faint-on-coal); }
+.lang { display: inline-flex; align-items: center; gap: 8px; font: 600 12px var(--font-m); letter-spacing: .08em; color: var(--dim-on-coal); text-decoration: none; border: 1px solid rgba(236, 231, 220, .22); border-radius: 4px; padding: 4px 8px; }
 .lang:hover { color: var(--ink-on-coal); border-color: rgba(236, 231, 220, .45); }
 .lang svg { width: 18px; height: 12px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0, 0, 0, .4); display: block; }
-.nav-cta { font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--ink-on-coal); text-decoration: none; border: 1px solid var(--rule-d); padding: 10px 18px; }
+.nav-cta { font: 600 12px var(--font-m); letter-spacing: .1em; color: var(--ink-on-coal); text-decoration: none; border: 1px solid var(--rule-d); padding: 8px 16px; }
 .nav-cta:hover { border-color: var(--amber); }
 
 /* герой: постер сразу, 3D поверх после загрузки */
@@ -236,11 +236,11 @@ img { max-width: 100%; }
 /* Низкие окна (до 780px): герой 80vh, текст с воздухом не влезал — ужимаем отступы. */
 @media (min-width: 769px) and (max-height: 880px) {
   .hero-copy { top: 4%; }
-  .hero-stat { margin-top: 14px; }
-  .hero-copy .sub { margin-top: 14px; }
+  .hero-stat { margin-top: 12px; }
+  .hero-copy .sub { margin-top: 12px; }
   .hero-copy .sub + .sub { margin-top: 8px; }
   .cta-row { margin-top: 20px; }
-  .hero-note { margin-top: 14px; }
+  .hero-note { margin-top: 12px; }
 }
 .hero-copy h1 span { color: var(--amber-hi); }
 /* Заголовок-питч в геро: спокойнее и мельче прежнего слогана (Юра, 2026-10-25) */
@@ -252,14 +252,14 @@ img { max-width: 100%; }
    чтобы текст не сливался и не подлезал под мак справа. */
 .hero-stat { color: var(--ink-on-coal); margin: 48px 0 0; max-width: 24ch; font: 500 clamp(16px, 1.5vw, 19px)/1.4 var(--font-d); }
 .hero-stat b { font: 700 clamp(34px, 3.4vw, 44px)/1 var(--font-d); color: var(--amber); vertical-align: -5px; margin-right: 12px; }
-.hero-copy .sub { color: var(--dim-on-coal); margin-top: 22px; max-width: 390px; font-size: 14px; line-height: 1.6; }
+.hero-copy .sub { color: var(--dim-on-coal); margin-top: 24px; max-width: 390px; font-size: 14px; line-height: 1.6; }
 .hero-copy .sub + .sub { margin-top: 12px; }
-.cta-row { display: flex; align-items: center; gap: 18px; margin-top: 44px; flex-wrap: wrap; }
-.btn-primary { display: inline-block; background: linear-gradient(180deg, var(--amber-hi), var(--amber)); color: #2a1f0a; font: 700 15px var(--font-d); padding: 14px 26px; border-radius: 9px; text-decoration: none; }
+.cta-row { display: flex; align-items: center; gap: 16px; margin-top: 44px; flex-wrap: wrap; }
+.btn-primary { display: inline-block; background: var(--amber); color: #2a1f0a; font: 700 15px var(--font-d); padding: 14px 24px; border-radius: 8px; text-decoration: none; }
 .btn-primary:hover { filter: brightness(1.06); }
-.link-cta { color: var(--dim-on-coal); font-size: 14.5px; text-decoration: none; border-bottom: 1px solid var(--rule-d); }
+.link-cta { color: var(--dim-on-coal); font-size: 15px; text-decoration: none; border-bottom: 1px solid var(--rule-d); }
 .link-cta:hover { color: var(--ink-on-coal); }
-.hero-note { margin-top: 22px; font: 11px var(--font-m); letter-spacing: .14em; color: var(--faint-on-coal); }
+.hero-note { margin-top: 24px; font: 12px var(--font-m); letter-spacing: .08em; color: var(--faint-on-coal); }
 
 /* бирки-выноски 3D-героя */
 .callout { position: absolute; z-index: 11; pointer-events: none; font-family: var(--font-m); font-size: .68rem; letter-spacing: .06em; white-space: nowrap; color: var(--ink-on-coal); background: rgba(28, 25, 20, .92); border: 1px solid var(--rule-d); padding: .3em .65em; opacity: 0; }
@@ -291,80 +291,85 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
 
 /* таблица систем — линованный отчёт */
 .spec { width: 100%; border-collapse: collapse; }
-.spec th { font: 600 11px var(--font-m); letter-spacing: .14em; color: var(--dim); text-align: left; padding: 0 12px 10px; text-transform: uppercase; }
-.spec td { padding: 15px 12px; border-bottom: 1px solid var(--rule-l); vertical-align: top; }
+.spec th { font: 600 12px var(--font-m); letter-spacing: .08em; color: var(--dim); text-align: left; padding: 0 12px 12px; text-transform: uppercase; }
+.spec td { padding: 16px 12px; border-bottom: 1px solid var(--rule-l); vertical-align: top; }
 .spec tbody tr:first-child td { border-top: 2px solid var(--ink); }
-.spec td:first-child { font: 600 13px var(--font-m); color: var(--ink); white-space: nowrap; width: 130px; }
-.spec td:nth-child(2) { color: var(--body); font-size: 14.5px; }
-.spec-note { margin-top: 18px; font: 11px var(--font-m); letter-spacing: .14em; color: var(--dim); }
+.spec td:first-child { font: 600 12px var(--font-m); color: var(--ink); white-space: nowrap; width: 130px; }
+.spec td:nth-child(2) { color: var(--body); font-size: 15px; }
+.spec-note { margin-top: 16px; font: 12px/1.5 var(--font-m); color: var(--dim); }
 
 /* скриншоты — белые карточки-полароиды */
-/* Бенто 4×3 (2026-10-29): лист PDF-отчёта целиком занимает 2×2 и задаёт высоту
-   двух верхних рядов, восемь окон программы вокруг в формате самого окна
-   (1916×1772); нижний ряд своей высоты. Картинки по языкам: img/web/ru, img/web/en. */
-.shots-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-.shots-grid figure { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 12px 12px 14px; display: flex; flex-direction: column; }
+/* Бенто 4×3 (2026-10-29): лист PDF-отчёта целиком занимает 2×2, восемь окон
+   программы вокруг в формате самого окна (1916×1772). Картинки по языкам:
+   img/web/ru, img/web/en.
+   Высоту рядов задают маленькие карточки (2026-11-20): раньше её задавал лист,
+   и у четырёх соседних карточек под картинкой оставалось 102 px пустоты. Лист
+   вписывается в свою клетку целиком (contain); белые поля по бокам сливаются
+   с белой карточкой. */
+.shots-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.shots-grid figure { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 12px 12px 16px; display: flex; flex-direction: column; }
 .shots-grid img { width: 100%; height: auto; aspect-ratio: 1916 / 1772; object-fit: cover; object-position: center top; display: block; background: #fff; }
 .shots-grid figure.tall { grid-column: span 2; grid-row: span 2; }
-.shots-grid figure.tall picture { flex: 1; display: flex; min-height: 0; }
-.shots-grid figure.tall img { aspect-ratio: auto; height: 100%; object-fit: cover; object-position: center top; }
-.shots-grid figcaption { font: 10px var(--font-m); letter-spacing: .12em; color: var(--dim); margin-top: auto; padding-top: 12px; }
+.shots-grid figure.tall picture { flex: 1; display: block; min-height: 0; position: relative; }
+.shots-grid figure.tall img { position: absolute; inset: 0; aspect-ratio: auto; height: 100%; object-fit: contain; object-position: center top; }
+.shots-grid figcaption { font: 12px/1.5 var(--font-m); color: var(--dim); padding-top: 12px; }
 @media (max-width: 1000px) {
   .shots-grid { grid-template-columns: repeat(2, 1fr); }
   .shots-grid figure.tall { grid-row: auto; }
-  .shots-grid figure.tall img { height: auto; aspect-ratio: auto; object-fit: contain; }
+  .shots-grid figure.tall picture { position: static; }
+  .shots-grid figure.tall img { position: static; height: auto; aspect-ratio: auto; object-fit: contain; }
 }
 @media (max-width: 768px) {
   .shots-grid figure.tall { grid-column: auto; }
 }
 
 /* шаги — номера-кружки */
-.steps { counter-reset: st; max-width: 720px; list-style: none; margin: 0 auto; }
-.steps li { padding: 22px 0 22px 64px; position: relative; counter-increment: st; border-bottom: 1px solid var(--rule-l); }
-.steps li::before { content: "0" counter(st); position: absolute; left: 0; top: 22px; font: 700 15px var(--font-m); color: var(--paper); background: var(--ink); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
+.steps { counter-reset: st; max-width: 760px; list-style: none; margin: 0 auto; }
+.steps li { padding: 24px 0 24px 64px; position: relative; counter-increment: st; border-bottom: 1px solid var(--rule-l); }
+.steps li::before { content: "0" counter(st); position: absolute; left: 0; top: 24px; font: 600 15px var(--font-m); color: var(--paper); background: var(--ink); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
 .steps b { font-size: 18px; }
-.steps li { color: var(--body); font-size: 14.5px; }
+.steps li { color: var(--body); font-size: 15px; }
 
 /* download: кнопка + мета + тиры */
 .dl-sub { color: var(--body); max-width: 620px; margin: -20px auto 8px; text-align: center; }
 .dl .cta-row { margin-top: 20px; justify-content: center; flex-direction: column; gap: 16px; }
-.dl-meta { font: 700 11px var(--font-m); letter-spacing: .1em; color: var(--dim); text-align: center; }
-.dl-ver { color: var(--ink); }
+.dl-meta { font: 400 12px var(--font-m); letter-spacing: .08em; color: var(--dim); text-align: center; }
+.dl-ver { color: var(--ink); font-weight: 600; }
 
 /* pricing */
 .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1140px; margin: 0 auto; align-items: stretch; }
-.plan { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 30px; position: relative; display: flex; flex-direction: column; }
+.plan { background: #fff; border: 1px solid var(--rule-l); box-shadow: 0 3px 14px rgba(38, 33, 26, .08); padding: 32px; position: relative; display: flex; flex-direction: column; }
 .plan.hot { outline: 2px solid var(--amber); }
 .plan h3 { font: 700 20px var(--font-d); }
-.price { font: 700 44px var(--font-d); color: var(--amber-deep); margin: 8px 0 2px; }
-.plan-for { color: var(--dim); font-size: 13.5px; margin-bottom: 16px; }
+.price { font: 700 44px var(--font-d); color: var(--amber-deep); margin: 8px 0 4px; }
+.plan-for { color: var(--dim); font-size: 14px; margin-bottom: 16px; }
 .plan ul { list-style: none; margin: 16px 0 24px; }
-.plan li { padding: 9px 0 9px 28px; position: relative; color: var(--body); font-size: 14px; line-height: 1.4; }
-.plan li::before { position: absolute; left: 0; top: 9px; font-weight: 700; font-family: var(--font-d); }
+.plan li { padding: 8px 0 8px 28px; position: relative; color: var(--body); font-size: 14px; line-height: 1.4; }
+.plan li::before { position: absolute; left: 0; top: 8px; font-weight: 700; font-family: var(--font-d); }
 .plan li.yes::before { content: "✓"; color: var(--good); }
 .plan li.no::before { content: "✗"; color: #c0392b; }
 .plan li.no { color: var(--dim); }
 .plan .buy { margin-top: auto; display: block; text-align: center; }
-.btn-ghost { display: block; text-align: center; background: transparent; border: 1.5px solid var(--ink); color: var(--ink); font: 700 15px var(--font-d); padding: 13px 26px; border-radius: 9px; text-decoration: none; }
+.btn-ghost { display: block; text-align: center; background: transparent; border: 1px solid var(--ink); color: var(--ink); font: 700 15px var(--font-d); padding: 13px 24px; border-radius: 8px; text-decoration: none; }
 .btn-ghost:hover { background: var(--ink); color: var(--paper); }
 /* Акцент Free: ярко-зелёная цена и кнопка, чтобы ловили глаз (Юра, 2026-10-25) */
 .plan.free .price { color: #2e9e4f; }
-.plan.free .btn-ghost { background: linear-gradient(180deg, #3bbd5f, #2e9e4f); border-color: #2e9e4f; color: #fff; }
-.plan.free .btn-ghost:hover { background: linear-gradient(180deg, #3bbd5f, #2e9e4f); color: #fff; filter: brightness(1.06); }
+.plan.free .btn-ghost { background: #2e9e4f; border-color: #2e9e4f; color: #fff; }
+.plan.free .btn-ghost:hover { background: #2e9e4f; color: #fff; filter: brightness(1.06); }
 .soon { display: inline-block; margin-top: 16px; font: 600 11px var(--font-m); letter-spacing: .12em; color: var(--dim); border: 1px dashed var(--rule-l); padding: 9px 16px; }
-.pricing-note { margin: 22px auto 0; color: var(--body); font-size: 14px; max-width: 720px; text-align: center; }
+.pricing-note { margin: 24px auto 0; color: var(--body); font-size: 14px; max-width: 720px; text-align: center; }
 .pricing-note a { color: var(--amber-deep); }
 
 /* faq */
 .faq details { border-bottom: 1px solid var(--rule-l); padding: 0 4px; }
-.faq summary { font: 500 15.5px var(--font-d); padding: 16px 0; cursor: pointer; list-style: none; }
+.faq summary { font: 500 16px var(--font-d); padding: 16px 0; cursor: pointer; list-style: none; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::before { content: "+ "; color: var(--amber-deep); font-weight: 700; }
 .faq details[open] summary::before { content: "− "; }
-.faq p { color: var(--body); font-size: 14.5px; padding: 0 0 16px; max-width: 860px; }
+.faq p { color: var(--body); font-size: 15px; padding: 0 0 16px; max-width: 860px; }
 
 /* ── тёмный футер ───────────────────────────────────────────────────── */
-.foot { background: var(--coal); color: var(--faint-on-coal); padding: 40px 0 60px; font-size: 13.5px; margin-top: 60px; }
+.foot { background: var(--coal); color: var(--faint-on-coal); padding: 40px 0 60px; font-size: 14px; margin-top: 60px; }
 .foot a { color: var(--dim-on-coal); }
 .foot a:hover { color: var(--ink-on-coal); }
 
@@ -390,7 +395,7 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
       display: flex; align-items: center; justify-content: center; padding: 56px 68px;
       opacity: 0; visibility: hidden; transition: opacity .18s, visibility 0s .18s; }
 .lb.open { opacity: 1; visibility: visible; transition: opacity .18s, visibility 0s; }
-.lb figure { background: #fff; border: 1px solid var(--rule-l); padding: 12px 12px 14px;
+.lb figure { background: #fff; border: 1px solid var(--rule-l); padding: 12px 12px 16px;
              display: flex; flex-direction: column; max-width: 100%; max-height: 100%; }
 /* Картинку зажимаем по высоте кадра за вычетом рамки и подписи, иначе
    вертикальный отчёт вылезает за экран и подпись уезжает под сгиб. */
@@ -398,10 +403,10 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
           width: auto; height: auto; object-fit: contain; background: var(--paper-2); }
 /* Ширину рамки задаёт картинка, а не подпись: без width: 0 длинная строка
    растягивает рамку шире снимка и поля становятся кривыми. */
-.lb figcaption { font: 10.5px var(--font-m); letter-spacing: .12em; color: var(--dim);
+.lb figcaption { font: 12px/1.5 var(--font-m); color: var(--dim);
                  padding-top: 12px; width: 0; min-width: 100%; }
 
-.lb-bar { position: absolute; top: 16px; right: 22px; display: flex; align-items: center; gap: 20px; }
+.lb-bar { position: absolute; top: 16px; right: 24px; display: flex; align-items: center; gap: 20px; }
 .lb-count { font: 12px var(--font-m); letter-spacing: .12em; color: var(--dim-on-coal); }
 .lb-btn { background: none; border: 0; padding: 8px; cursor: pointer; color: var(--dim-on-coal);
           font: 300 30px/1 var(--font-d); transition: color .15s; }
@@ -409,8 +414,8 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
 .lb-btn:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
 .lb-close { font-size: 34px; }
 .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 44px; }
-.lb-prev { left: 10px; }
-.lb-next { right: 10px; }
+.lb-prev { left: 12px; }
+.lb-next { right: 12px; }
 
 /* ── мобильные ──────────────────────────────────────────────────────── */
 @media (max-width: 1000px) {
@@ -418,7 +423,7 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
   .plans { grid-template-columns: 1fr; max-width: 440px; }
 }
 @media (max-width: 620px) {
-  .lb { padding: 52px 10px; }
+  .lb { padding: 52px 12px; }
   .lb img { max-height: calc(100vh - 156px); }
   .lb-prev, .lb-next { font-size: 34px; top: auto; bottom: 8px; transform: none; }
   .lb-prev { left: 20%; }
@@ -436,13 +441,13 @@ main section > h2 { text-align: center; margin: 72px 0 44px; }
      наезжали друг на друга. Кнопка в шапке дублирует главную в герое, а
      шапка не липкая — на телефоне убираем её, бренд уменьшаем. */
   .nav { padding: 16px 20px; }
-  .brand { font-size: 22px; gap: 10px; }
-  .brand img { width: 32px; height: 32px; border-radius: 7px; }
+  .brand { font-size: 22px; gap: 12px; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
   .nav-cta { display: none; }
-  .hero-copy { position: static; left: auto; right: auto; top: auto; bottom: auto; padding: 18px 20px 40px; max-width: none; }
+  .hero-copy { position: static; left: auto; right: auto; top: auto; bottom: auto; padding: 20px 20px 40px; max-width: none; }
   .hero-copy h1 { font-size: clamp(30px, 8.6vw, 38px); }
-  .hero-copy .sub { margin-top: 18px; max-width: none; }
-  .hero-copy .cta-row { margin-top: 26px; }
+  .hero-copy .sub { margin-top: 16px; max-width: none; }
+  .hero-copy .cta-row { margin-top: 24px; }
   .spec thead { display: none; }
   .spec, .spec tbody, .spec tr, .spec td { display: block; width: 100%; }
   .spec tbody tr { border-bottom: 1px solid var(--rule-l); padding: 12px 0; }
