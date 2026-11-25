@@ -3,6 +3,14 @@
     <channel>
         <title>CheckMyMac</title>
         <item>
+            <title>1.5.56</title>
+            <pubDate>Wed, 25 Nov 2026 14:13:16 +0800</pubDate>
+            <sparkle:version>10556</sparkle:version>
+            <sparkle:shortVersionString>1.5.56</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/JdYoda/checkmymac-site/releases/download/v1.5.56/CheckMyMacPro-1.5.56.dmg" length="19093364" type="application/octet-stream" sparkle:edSignature="6DF7By52icxvTh0thQXMBgeu8nUJtu6988K4gFKxI4KTSEgAl+ryJeoO2Au/HxDwUkt/8GYAZFpwVwyB++jbCQ=="/>
+        </item>
+        <item>
             <title>1.5.55</title>
             <pubDate>Tue, 17 Nov 2026 14:12:52 +0800</pubDate>
             <sparkle:version>10555</sparkle:version>
@@ -17,14 +25,6 @@
             <sparkle:shortVersionString>1.5.54</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/JdYoda/checkmymac-site/releases/download/v1.5.54/CheckMyMacPro-1.5.54.dmg" length="19026389" type="application/octet-stream" sparkle:edSignature="YCDhE1qLeVJBrl+FDYOg1FosTRyhF+bMRT1hBLtQ+eiqGLHi7Ccxz2EGIZ/3ElcYYedKNf2LbTTr8zAu3XIQAA=="/>
-        </item>
-        <item>
-            <title>1.5.53</title>
-            <pubDate>Mon, 02 Nov 2026 17:21:15 +0800</pubDate>
-            <sparkle:version>10553</sparkle:version>
-            <sparkle:shortVersionString>1.5.53</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>10.15</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/JdYoda/checkmymac-site/releases/download/v1.5.53/CheckMyMacPro-1.5.53.dmg" length="18890238" type="application/octet-stream" sparkle:edSignature="J4X7CKZvzlq+k+vmWpZIu1rxVocbLFMm+sX1dYabDPDyJaSemsKAI+rtABx6xJbTUo0BjNeDyXrhqCo3EeaBDQ=="/>
         </item>
     </channel>
 </rss>
